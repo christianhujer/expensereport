@@ -1,0 +1,7 @@
+strictness: veryhigh
+pep8:
+  disable:
+    - N802
+    - N815
+  options:
+    max-line-length: 120

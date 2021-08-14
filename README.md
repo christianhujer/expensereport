@@ -13,3 +13,22 @@ The goal is to support the following new feature as best as you can:
 5. 🔧 Refactor the code.
 6. 🔧 Refactor the test.
 7. 👼 Test-drive the new feature.
+
+## Supported Languages
+The ExpenseReport example currently exists in the following languages:
+- [C](expensereport-c/)
+- [C#](expensereport-csharp/)
+- [C++](expensereport-cxx/)
+- [Go](expensereport-go/)
+- [Java](expensereport-java/)
+- [JavaScript](expensereport-javascript/)
+- [Kotlin](expensereport-kotlin/)
+- [Python](expensereport-python/)
+- [Rust](expensereport-rust/)
+- [TypeScript](expensereport-typescript/)
+
+## Credits
+I first encountered the ExpenseReport example during a bootcamp at Equal Experts.
+I also have seen the ExpenseReport example being used by Robert "Uncle Bob" C. Martin.
+I have tried to research its origins but so far I have failed.
+If you know who has first come up with this example, please get in touch with me.
