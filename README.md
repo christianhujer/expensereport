@@ -27,6 +27,11 @@ The ExpenseReport example currently exists in the following languages:
 - [Rust](expensereport-rust/)
 - [TypeScript](expensereport-typescript/)
 
+## Solutions
+To see solutions, switch to the branch solutions.
+
+**Warning** The solutions branch will be rebased!
+
 ## Credits
 I first encountered the ExpenseReport example during a bootcamp at Equal Experts.
 I also have seen the ExpenseReport example being used by Robert "Uncle Bob" C. Martin.
