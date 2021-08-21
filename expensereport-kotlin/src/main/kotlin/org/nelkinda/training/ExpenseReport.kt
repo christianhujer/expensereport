@@ -1,43 +1,41 @@
 package org.nelkinda.training
 
-import java.util.*
+import java.lang.Integer.MAX_VALUE
+import java.util.Date
 
-enum class ExpenseType {
-    DINNER, BREAKFAST, CAR_RENTAL
+enum class ExpenseType(
+    val name_: String,
+    val limit: Int,
+    val isMeal: Boolean,
+) {
+    DINNER("Dinner", 5000, true),
+    BREAKFAST("Breakfast", 1000, true),
+    CAR_RENTAL("Car Rental", MAX_VALUE, false),
+    LUNCH("Lunch", 2000, true),
+    ;
 }
 
-class Expense {
-    var type: ExpenseType? = null
-    var amount: Int? = null
+class Expense(
+    private val type: ExpenseType,
+    val amount: Int,
+) {
+    val name: String get() = type.name_
+    val isMeal: Boolean get() = type.isMeal
+    fun isOverLimit() = amount > type.limit
 }
 
 class ExpenseReport {
-    fun printReport(expenses: List<Expense>) {
-        var total = 0
-        var mealExpenses = 0
+    fun printReport(expenses: List<Expense>, timestamp: Date = Date()) = print(expenses.generateReport(timestamp))
 
-        println("Expenses " + Date())
+    private fun List<Expense>.generateReport(timestamp: Date) = header(timestamp) + body() + summary()
 
-        for (expense in expenses) {
-            if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
-                mealExpenses += expense.amount!!
-            }
+    private fun header(timestamp: Date) = "Expenses $timestamp\n"
 
-            var expenseName = ""
-            when (expense.type) {
-                ExpenseType.DINNER -> expenseName  = "Dinner"
-                ExpenseType.BREAKFAST -> expenseName = "Breakfast"
-                ExpenseType.CAR_RENTAL -> expenseName = "Car Rental"
-            }
+    private fun List<Expense>.body() = joinToString(separator = "") { it.detail() }
+    private fun Expense.detail() = "$name\t$amount\t$overLimitMarker\n"
+    private val Expense.overLimitMarker get() = if (isOverLimit()) "X" else " "
 
-            val mealOverExpensesMarker = if (expense.type == ExpenseType.DINNER && expense.amount!! > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount!! > 1000) "X" else " "
-
-            println(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
-
-            total += expense.amount!!
-        }
-
-        println("Meal expenses: $mealExpenses")
-        println("Total expenses: $total")
-    }
+    private fun List<Expense>.summary() = "Meal expenses: ${sumMeals()}\nTotal expenses: ${sumAll()}\n"
+    private fun List<Expense>.sumAll() = sumOf { it.amount }
+    private fun List<Expense>.sumMeals() = filter { it.isMeal }.sumAll()
 }
