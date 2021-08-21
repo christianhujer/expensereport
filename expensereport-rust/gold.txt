@@ -1,0 +1,13 @@
+Expense Report 2021-08-20 14:37:24.107318811 UTC
+Dinner	1	 
+Dinner	5000	 
+Dinner	5001	X
+Breakfast	2	 
+Breakfast	1000	 
+Breakfast	1001	X
+Car Rental	4	 
+Lunch	8	 
+Lunch	2000	 
+Lunch	2001	X
+Meal Expenses: 16014
+Total Expenses: 16018
