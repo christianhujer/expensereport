@@ -19,6 +19,7 @@ The ExpenseReport example currently exists in the following languages:
 - [C](expensereport-c/)
 - [C#](expensereport-csharp/)
 - [C++](expensereport-cxx/)
+- [Dart](expensereport-dart/)
 - [Go](expensereport-go/)
 - [Java](expensereport-java/)
 - [JavaScript](expensereport-javascript/)
