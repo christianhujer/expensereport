@@ -23,6 +23,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Java](expensereport-java/)
 - [JavaScript](expensereport-javascript/)
 - [Kotlin](expensereport-kotlin/)
+- [PHP](expensereport-php/)
 - [Python](expensereport-python/)
 - [Rust](expensereport-rust/)
 - [Swift](expensereport-swift/)
