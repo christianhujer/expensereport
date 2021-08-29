@@ -1,0 +1,4 @@
+.bsp/
+project/
+target/
+*.class

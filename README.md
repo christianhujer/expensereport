@@ -27,6 +27,7 @@ The ExpenseReport example currently exists in the following languages:
 - [PHP](expensereport-php/)
 - [Python](expensereport-python/)
 - [Rust](expensereport-rust/)
+- [Scala](expensereport-scala/)
 - [Swift](expensereport-swift/)
 - [TypeScript](expensereport-typescript/)
 
