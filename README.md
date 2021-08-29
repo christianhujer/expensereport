@@ -25,6 +25,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Kotlin](expensereport-kotlin/)
 - [Python](expensereport-python/)
 - [Rust](expensereport-rust/)
+- [Swift](expensereport-swift/)
 - [TypeScript](expensereport-typescript/)
 
 ## Solutions
