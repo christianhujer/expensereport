@@ -78,6 +78,15 @@ To see solutions, switch to the branch solutions.
 
 **Warning** The solutions branch will be rebased!
 
+Currently, soltuions exist in the following languages:
+- [Java](expensereport-java/)
+- [Kotlin](expensereport-kotlin/)
+- [Rust](expensereport-rust/)
+
+### Solution Rationale
+- Make adding the new requirement (lunch with an expense limit 2000) as easy and simple and error-free as possible. That means solving the OCP-violation of `printReport()`.
+- Small ("atomic") functions. Extract until you can no longer reasonably extract further methods.
+
 ## Credits
 I first encountered the ExpenseReport example during a bootcamp at Equal Experts.
 I also have seen the ExpenseReport example being used by Robert "Uncle Bob" C. Martin.
