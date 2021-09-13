@@ -33,6 +33,39 @@ The ExpenseReport example currently exists in the following languages:
 - [Swift](expensereport-swift/)
 - [TypeScript](expensereport-typescript/)
 
+## Planned languages
+(in no particular order and with no guarantee)
+
+- Ada
+- Common Lisp
+- D
+- Eiffel
+- Elixir
+- Elm
+- F#
+- Fortran ⇐ This one is already on the way!
+- Groovy
+- Haskell
+- Julia
+- Lua
+- Modula-2 (once the linker starts working again)
+- Oberon
+- Objective-C
+- Perl
+- Ruby
+- Scheme
+- Smalltalk
+- TcL
+- Visual BASIC
+- XML/XSLT
+
+## Languages explicitly not planned
+- Brainfuck
+- Logo
+- Malbolge
+- Prolog
+- Whitespace
+
 ## Solutions
 To see solutions, switch to the branch solutions.
 
