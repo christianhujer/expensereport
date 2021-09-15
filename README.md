@@ -21,6 +21,7 @@ The ExpenseReport example currently exists in the following languages:
 - [C++](expensereport-cxx/)
 - [Clojure](expensereport-clojure/) ⇐ This one was particularly painful to intentionally write poorly, I almost cried.
 - [Dart](expensereport-dart/)
+- [Fortran](expensereport-fortran/)
 - [Go](expensereport-go/)
 - [Java](expensereport-java/)
 - [JavaScript](expensereport-javascript/)
@@ -43,7 +44,6 @@ The ExpenseReport example currently exists in the following languages:
 - Elixir
 - Elm
 - F#
-- Fortran ⇐ This one is already on the way!
 - Groovy
 - Haskell
 - Julia
