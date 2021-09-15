@@ -33,6 +33,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Scala](expensereport-scala/)
 - [Swift](expensereport-swift/)
 - [TypeScript](expensereport-typescript/)
+- [XML/XSLT](expensereport-xslt/)
 
 ## Planned languages
 (in no particular order and with no guarantee)
@@ -57,7 +58,6 @@ The ExpenseReport example currently exists in the following languages:
 - Smalltalk
 - TcL
 - Visual BASIC
-- XML/XSLT
 
 ## Languages explicitly not planned
 - Brainfuck
