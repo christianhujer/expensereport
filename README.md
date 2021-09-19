@@ -43,6 +43,7 @@ The ExpenseReport example currently exists in the following languages:
 (in no particular order and with no guarantee)
 
 - Ada
+- COBOL
 - Common Lisp
 - D
 - Eiffel
