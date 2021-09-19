@@ -37,6 +37,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Rust](expensereport-rust/)
 - [Scala](expensereport-scala/)
 - [Swift](expensereport-swift/)
+- [TcL](expensereport-tcl/)
 - [TypeScript](expensereport-typescript/)
 - [XML/XSLT](expensereport-xslt/)
 
@@ -59,7 +60,6 @@ The ExpenseReport example currently exists in the following languages:
 - Objective-C
 - Scheme
 - Smalltalk
-- TcL
 - Visual BASIC
 
 ## Languages explicitly not planned
