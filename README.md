@@ -32,6 +32,7 @@ The ExpenseReport example currently exists in the following languages:
 - [PHP](expensereport-php/)
 - [Python](expensereport-python/)
 - [Raku](expensereport-raku/) (Perl6)
+- [Ruby](expensereport-ruby/)
 - [Rust](expensereport-rust/)
 - [Scala](expensereport-scala/)
 - [Swift](expensereport-swift/)
@@ -47,6 +48,7 @@ The ExpenseReport example currently exists in the following languages:
 - Eiffel
 - Elixir
 - Elm
+- Erlang
 - F#
 - Haskell
 - Julia
@@ -54,7 +56,6 @@ The ExpenseReport example currently exists in the following languages:
 - Modula-2 (once the linker starts working again)
 - Oberon
 - Objective-C
-- Ruby
 - Scheme
 - Smalltalk
 - TcL
