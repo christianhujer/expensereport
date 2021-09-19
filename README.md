@@ -23,6 +23,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Dart](expensereport-dart/)
 - [Fortran](expensereport-fortran/)
 - [Go](expensereport-go/)
+- [Groovy](expensereport-groovy/)
 - [Java](expensereport-java/)
 - [JavaScript](expensereport-javascript/)
 - [Kotlin](expensereport-kotlin/)
@@ -47,7 +48,6 @@ The ExpenseReport example currently exists in the following languages:
 - Elixir
 - Elm
 - F#
-- Groovy
 - Haskell
 - Julia
 - Lua
