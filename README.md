@@ -20,6 +20,7 @@ The ExpenseReport example currently exists in the following languages:
 - [C#](expensereport-csharp/)
 - [C++](expensereport-cxx/)
 - [Clojure](expensereport-clojure/) ⇐ This one was particularly painful to intentionally write poorly, I almost cried.
+- [COBOL](expensereport-cobol/)
 - [Dart](expensereport-dart/)
 - [Fortran](expensereport-fortran/)
 - [Go](expensereport-go/)
@@ -43,7 +44,6 @@ The ExpenseReport example currently exists in the following languages:
 (in no particular order and with no guarantee)
 
 - Ada
-- COBOL
 - Common Lisp
 - D
 - Eiffel
