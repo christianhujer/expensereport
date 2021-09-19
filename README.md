@@ -30,6 +30,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Perl](expensereport-perl/)
 - [PHP](expensereport-php/)
 - [Python](expensereport-python/)
+- [Raku](expensereport-raku/) (Perl6)
 - [Rust](expensereport-rust/)
 - [Scala](expensereport-scala/)
 - [Swift](expensereport-swift/)
