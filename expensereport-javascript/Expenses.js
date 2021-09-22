@@ -1,7 +1,7 @@
 const type = {
     BREAKFAST: 1,
-    LUNCH: 2,
-    DINNER: 3,
+    DINNER: 2,
+    CAR_RENTAL: 3,
 };
 
 function printReport(expenses) {
