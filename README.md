@@ -39,6 +39,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Swift](expensereport-swift/)
 - [TcL](expensereport-tcl/)
 - [TypeScript](expensereport-typescript/)
+- [Visual BASIC](expensereport-vb/)
 - [XML/XSLT](expensereport-xslt/)
 
 ## Planned languages
@@ -60,7 +61,6 @@ The ExpenseReport example currently exists in the following languages:
 - Objective-C
 - Scheme
 - Smalltalk
-- Visual BASIC
 
 ## Languages explicitly not planned
 - Brainfuck
