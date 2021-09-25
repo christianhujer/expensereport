@@ -28,6 +28,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Java](expensereport-java/)
 - [JavaScript](expensereport-javascript/)
 - [Kotlin](expensereport-kotlin/)
+- [Lisp](expensereport-lisp/) (Common Lisp)
 - [Pascal](expensereport-pascal/)
 - [Perl](expensereport-perl/)
 - [PHP](expensereport-php/)
@@ -46,7 +47,6 @@ The ExpenseReport example currently exists in the following languages:
 (in no particular order and with no guarantee)
 
 - Ada
-- Common Lisp
 - D
 - Eiffel
 - Elixir
