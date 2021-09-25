@@ -29,6 +29,7 @@ The ExpenseReport example currently exists in the following languages:
 - [JavaScript](expensereport-javascript/)
 - [Kotlin](expensereport-kotlin/)
 - [Lisp](expensereport-lisp/) (Common Lisp)
+- [Lua](expensereport-lua/)
 - [Pascal](expensereport-pascal/)
 - [Perl](expensereport-perl/)
 - [PHP](expensereport-php/)
@@ -56,7 +57,6 @@ The ExpenseReport example currently exists in the following languages:
 - F#
 - Haskell
 - Julia
-- Lua
 - Modula-2 (once the linker starts working again)
 - Oberon
 - Objective-C
