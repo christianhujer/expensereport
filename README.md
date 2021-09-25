@@ -58,13 +58,13 @@ The ExpenseReport example currently exists in the following languages:
 - Erlang
 - Haskell
 - Julia
+- Logo
 - Modula-2 (once the linker starts working again)
 - Oberon
 - Scheme
 
 ## Languages explicitly not planned
 - Brainfuck
-- Logo
 - Malbolge
 - Prolog
 - Whitespace
