@@ -22,6 +22,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Clojure](expensereport-clojure/) ⇐ This one was particularly painful to intentionally write poorly, I almost cried.
 - [COBOL](expensereport-cobol/)
 - [Dart](expensereport-dart/)
+- [F#](expensereport-fsharp/)
 - [Fortran](expensereport-fortran/)
 - [Go](expensereport-go/)
 - [Groovy](expensereport-groovy/)
@@ -54,7 +55,6 @@ The ExpenseReport example currently exists in the following languages:
 - Elixir
 - Elm
 - Erlang
-- F#
 - Haskell
 - Julia
 - Modula-2 (once the linker starts working again)

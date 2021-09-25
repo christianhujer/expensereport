@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>expensereport_fsharp</RootNamespace>
+    <WarnOn>3390;$(WarnOn)</WarnOn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+</Project>
