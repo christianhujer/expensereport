@@ -11,6 +11,7 @@
                 05 WS-EXPENSES OCCURS 5 TIMES INDEXED BY I.
                     10 WS-TYPE PIC 9(1).
                     10 WS-AMOUNT PIC 9(10).
+            01 FORMATTED-INT PIC Z(04)9.
 
        PROCEDURE DIVISION.
            MOVE 1 TO WS-TYPE(1)
@@ -30,8 +31,10 @@
            DISPLAY 'Expenses: '.
            MOVE 1 TO I
            PERFORM SHOWEXPENSEDETAIL
-           DISPLAY "Meals: "MEALS.
-           DISPLAY "Total: "TOTAL.
+           MOVE MEALS TO FORMATTED-INT
+           DISPLAY "Meals: "FORMATTED-INT.
+           MOVE TOTAL TO FORMATTED-INT
+           DISPLAY "Total: "FORMATTED-INT.
 
        SHOWEXPENSEDETAIL.
            IF WS-TYPE(I) = 1 OR 2
@@ -48,7 +51,8 @@
            ELSE
              MOVE ' ' TO MEALOVEREXPENSESMARKER
            END-IF.
-           DISPLAY EXPENSENAME WS-AMOUNT(I) ' ' MEALOVEREXPENSESMARKER
+           MOVE WS-AMOUNT(I) TO FORMATTED-INT
+           DISPLAY EXPENSENAME FORMATTED-INT ' ' MEALOVEREXPENSESMARKER
            ADD WS-AMOUNT(I) TO TOTAL
            IF I < 5
                ADD 1 TO I
