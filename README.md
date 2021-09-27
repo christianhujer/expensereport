@@ -40,6 +40,7 @@ The ExpenseReport example currently exists in the following languages:
 - [PHP](expensereport-php/)
 - [Python](expensereport-python/)
 - [Raku](expensereport-raku/) (Perl6)
+- [Rexx](expensereport-rexx/) (tested with Regina Rexx and ARexx)
 - [Ruby](expensereport-ruby/)
 - [Rust](expensereport-rust/)
 - [Scala](expensereport-scala/)
