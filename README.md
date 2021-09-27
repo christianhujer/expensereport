@@ -16,6 +16,7 @@ The goal is to support the following new feature as best as you can:
 
 ## Supported Languages
 The ExpenseReport example currently exists in the following languages:
+- [BASIC](expensereport-c64) (Commodore BASIC, Commodore 64)
 - [BASIC](expensereport-cpc) (Locomotive BASIC, Amstrad CPC)
 - [C](expensereport-c/)
 - [C#](expensereport-csharp/)
