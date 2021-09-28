@@ -38,6 +38,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Pascal](expensereport-pascal/)
 - [Perl](expensereport-perl/)
 - [PHP](expensereport-php/)
+- [Prolog](expensereport-prolog/)
 - [Python](expensereport-python/)
 - [Raku](expensereport-raku/) (Perl6)
 - [Rexx](expensereport-rexx/) (tested with Regina Rexx and ARexx)
@@ -70,7 +71,6 @@ The ExpenseReport example currently exists in the following languages:
 ## Languages explicitly not planned
 - Brainfuck
 - Malbolge
-- Prolog
 - Whitespace
 
 ## Solutions
