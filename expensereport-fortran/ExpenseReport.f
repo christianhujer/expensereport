@@ -17,7 +17,7 @@
           INTEGER :: i
           CHARACTER(LEN = 20) :: expenseName
           CHARACTER(LEN = 1) :: mealOverExpensesMarker
-          PRINT *, 'Expenses'
+          PRINT "(a)", 'Expenses'
           DO i = LBOUND(expenses, 1), UBOUND(expenses, 1)
             IF (expenses(i)%type == BREAKFAST .OR. expenses(i)%type == DINNER) &
               mealExpenses = mealExpenses + expenses(i)%amount
@@ -36,10 +36,10 @@
               mealOverExpensesMarker = " "
             END IF
             total = total + expenses(i)%amount
-            PRINT *, expenseName, expenses(i)%amount, mealOverExpensesMarker
+            PRINT "(a,1x,i10,1x,a)", expenseName, expenses(i)%amount, mealOverExpensesMarker
           END DO
-          PRINT *, 'Meal expenses: ', mealExpenses
-          PRINT *, 'Total: ', total
+          PRINT "(a,i10)", 'Meal expenses: ', mealExpenses
+          PRINT "(a,i10)", 'Total: ', total
         END SUBROUTINE printReport
 
       END MODULE ExpenseReport
