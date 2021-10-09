@@ -46,6 +46,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Ruby](expensereport-ruby/)
 - [Rust](expensereport-rust/)
 - [Scala](expensereport-scala/)
+- [Scheme](expensereport-scheme/)
 - [Swift](expensereport-swift/)
 - [Smalltalk](expensereport-smalltalk/)
 - [TcL](expensereport-tcl/)
@@ -67,7 +68,6 @@ The ExpenseReport example currently exists in the following languages:
 - Logo
 - Modula-2 (once the linker starts working again)
 - Oberon
-- Scheme
 
 ## Languages explicitly not planned
 - Brainfuck
