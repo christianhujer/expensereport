@@ -68,6 +68,7 @@ The ExpenseReport example currently exists in the following languages:
 - Logo
 - Modula-2 (once the linker starts working again)
 - Oberon
+- R
 
 ## Languages explicitly not planned
 - Brainfuck
