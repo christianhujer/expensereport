@@ -47,6 +47,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Rust](expensereport-rust/)
 - [Scala](expensereport-scala/)
 - [Scheme](expensereport-scheme/)
+- [SQL](expensereport-sql/) (Using SQLite3)
 - [Swift](expensereport-swift/)
 - [Smalltalk](expensereport-smalltalk/)
 - [TcL](expensereport-tcl/)
