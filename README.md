@@ -35,6 +35,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Kotlin](expensereport-kotlin/)
 - [Lisp](expensereport-lisp/) (Common Lisp)
 - [Lua](expensereport-lua/)
+- [Nim](expense-report-nim/)
 - [Objective-C](expensereport-objc/)
 - [Pascal](expensereport-pascal/)
 - [Perl](expensereport-perl/)
