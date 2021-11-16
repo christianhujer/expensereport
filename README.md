@@ -33,6 +33,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Groovy](expensereport-groovy/)
 - [Java](expensereport-java/)
 - [JavaScript](expensereport-javascript/)
+- [Julia](expensereport-julia/)
 - [Kotlin](expensereport-kotlin/)
 - [Lisp](expensereport-lisp/) (Common Lisp)
 - [Lua](expensereport-lua/)
@@ -66,7 +67,6 @@ The ExpenseReport example currently exists in the following languages:
 - Elm
 - Erlang
 - Haskell
-- Julia
 - Logo
 - Modula-2 (once the linker starts working again)
 - Oberon
