@@ -14,11 +14,9 @@ let package = Package(
     targets: [
         .target(
             name: "ExpenseReport",
-            dependencies: [],
-            path: "Sources/ExpenseReport-camelcasing"),
+            dependencies: []),
         .testTarget(
             name: "ExpenseReportTests",
-            dependencies: ["ExpenseReport"],
-            path: "Tests/ExpenseReportTests-camelcasing"),
+            dependencies: ["ExpenseReport"]),
     ]
 )
