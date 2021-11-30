@@ -16,4 +16,8 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\expensereport-csharp\expensereport-csharp.csproj" />
+    </ItemGroup>
+
 </Project>
