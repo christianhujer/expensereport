@@ -4,7 +4,8 @@
 		<TargetFramework>net5.0</TargetFramework>
 
 		<IsPackable>false</IsPackable>
-    </PropertyGroup>
+        <nullable>Enable</nullable>
+	</PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="nunit" Version="3.11.0"/>
