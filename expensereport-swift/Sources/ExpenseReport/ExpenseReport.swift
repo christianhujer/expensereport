@@ -34,6 +34,6 @@ class ExpenseReport {
             total += expense.amount
         }
         print("Meal Expenses: \(mealExpenses)")
-        print("Total Expenses:\(total)")
+        print("Total Expenses: \(total)")
     }
 }
