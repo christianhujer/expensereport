@@ -22,7 +22,7 @@ class ExpenseReport {
             }
 
             var expenseName = ""
-            switch (expense.type) {
+            switch expense.type {
             case .breakfast: expenseName = "Breakfast"
             case .dinner: expenseName = "Dinner"
             case .carRental: expenseName = "Car Rental"
