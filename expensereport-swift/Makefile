@@ -7,7 +7,7 @@ all: test
 
 .PHONY: test
 test: build
-	.build/debug/expensereportPackageTests.xctest
+	.build/debug/ExpenseReportPackageTests.xctest
 
 .PHONY: build
 build:
