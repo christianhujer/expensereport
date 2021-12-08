@@ -1,9 +1,9 @@
 import Foundation
 
 enum ExpenseType {
-    case BREAKFAST
-    case DINNER
-    case CAR_RENTAL
+    case breakfast
+    case dinner
+    case carRental
 }
 
 struct Expense {
@@ -13,28 +13,27 @@ struct Expense {
 
 class ExpenseReport {
     func printReport(expenses: [Expense]) {
-        let mealExpenses = 0
-        let total = 0
-        print("Expense Report " + Date())
+        var mealExpenses = 0
+        var total = 0
+        print("Expense Report \(Date())")
         for expense in expenses {
-            if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
+            if (expense.type == .dinner || expense.type == .breakfast) {
                 mealExpenses += expense.amount
             }
 
-            let expenseName = ""
-            switch (expense.type) {
-            case BREAKFAST: expenseName = "Breakfast"
-            case DINNER: expenseName = "Dinner"
-            case CAR_RENTAL: expenseName = "Car Rental"
+            var expenseName = ""
+            switch expense.type {
+            case .breakfast: expenseName = "Breakfast"
+            case .dinner: expenseName = "Dinner"
+            case .carRental: expenseName = "Car Rental"
             }
 
-            let mealOverExpensesMarker = expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000 ? "X" : " "
-            print(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
+            let mealOverExpensesMarker = expense.type == .dinner && expense.amount > 5000 || expense.type == .breakfast && expense.amount > 1000 ? "X" : " "
+            print("\(expenseName)\t\(expense.amount)\t\(mealOverExpensesMarker)")
 
             total += expense.amount
         }
-        print("Meal Expenses: " + mealExpenses)
-        print("Total Expenses:" + total)
-        print(generateReport(expenses, Date()), terminator: "")
+        print("Meal Expenses: \(mealExpenses)")
+        print("Total Expenses:\(total)")
     }
 }

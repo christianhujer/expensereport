@@ -1,7 +1,7 @@
 @testable import ExpenseReport
 import XCTest
 
-class ExpenseReportTests: XCTestCase {
-    func testPrintReport() {
+final class ExpenseReportTests: XCTestCase {
+    func testPrintReport() throws {
     }
 }
