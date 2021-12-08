@@ -1,9 +1,9 @@
 import Foundation
 
 enum ExpenseType {
-    case BREAKFAST
-    case DINNER
-    case CAR_RENTAL
+    case breakfast
+    case dinner
+    case carRental
 }
 
 struct Expense {
@@ -17,18 +17,18 @@ class ExpenseReport {
         var total = 0
         print("Expense Report \(Date())")
         for expense in expenses {
-            if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
+            if (expense.type == ExpenseType.dinner || expense.type == ExpenseType.breakfast) {
                 mealExpenses += expense.amount
             }
 
             var expenseName = ""
             switch (expense.type) {
-            case .BREAKFAST: expenseName = "Breakfast"
-            case .DINNER: expenseName = "Dinner"
-            case .CAR_RENTAL: expenseName = "Car Rental"
+            case .breakfast: expenseName = "Breakfast"
+            case .dinner: expenseName = "Dinner"
+            case .carRental: expenseName = "Car Rental"
             }
 
-            let mealOverExpensesMarker = expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000 ? "X" : " "
+            let mealOverExpensesMarker = expense.type == ExpenseType.dinner && expense.amount > 5000 || expense.type == ExpenseType.breakfast && expense.amount > 1000 ? "X" : " "
             print("\(expenseName)\t\(expense.amount)\t\(mealOverExpensesMarker)")
 
             total += expense.amount
