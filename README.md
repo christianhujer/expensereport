@@ -16,6 +16,7 @@ The goal is to support the following new feature as best as you can:
 
 ## Supported Languages
 The ExpenseReport example currently exists in the following languages:
+- [Ada](expensereport-ada)
 - [BASIC](expensereport-abs) (Amiga BASIC, Commodore Amiga) ⇐ Quite amazing! First BASIC without line numbers!
 - [BASIC](expensereport-bwb) (Bywater BASIC, Linux) (very similar to Commodore BASIC)
 - [BASIC](expensereport-c64) (Commodore BASIC, Commodore 64)
@@ -31,6 +32,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Fortran](expensereport-fortran/)
 - [Go](expensereport-go/)
 - [Groovy](expensereport-groovy/)
+- [Haskell](expensereport-haskell/)
 - [Java](expensereport-java/)
 - [JavaScript](expensereport-javascript/)
 - [Julia](expensereport-julia/)
@@ -61,12 +63,10 @@ The ExpenseReport example currently exists in the following languages:
 ## Planned languages
 (in no particular order and with no guarantee)
 
-- Ada
 - Eiffel
 - Elixir
 - Elm
 - Erlang
-- Haskell
 - Logo
 - Modula-2 (once the linker starts working again)
 - Oberon
