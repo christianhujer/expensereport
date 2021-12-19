@@ -9,7 +9,7 @@ GOSUB PrintExpenses
 END
 
 PrintExpenses:
-    PRINT "Expensereport: " $DATE
+    PRINT "Expensereport: ", DATE$
     meals = 0
     total = 0
     FOR i=0 TO 4
