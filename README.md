@@ -28,6 +28,7 @@ The ExpenseReport example currently exists in the following languages:
 - [COBOL](expensereport-cobol/)
 - [D](expensereport-d/)
 - [Dart](expensereport-dart/)
+- [Elixir](expensereport-elixir/)
 - [F#](expensereport-fsharp/)
 - [Fortran](expensereport-fortran/)
 - [Go](expensereport-go/)
@@ -64,7 +65,6 @@ The ExpenseReport example currently exists in the following languages:
 (in no particular order and with no guarantee)
 
 - Eiffel
-- Elixir
 - Elm
 - Erlang
 - Logo
