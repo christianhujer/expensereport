@@ -53,9 +53,9 @@ The ExpenseReport example currently exists in the following languages:
 - [Rust](expensereport-rust/)
 - [Scala](expensereport-scala/)
 - [Scheme](expensereport-scheme/)
+- [Smalltalk](expensereport-smalltalk/)
 - [SQL](expensereport-sql/) (Using SQLite3)
 - [Swift](expensereport-swift/)
-- [Smalltalk](expensereport-smalltalk/)
 - [TcL](expensereport-tcl/)
 - [TypeScript](expensereport-typescript/)
 - [Visual BASIC](expensereport-vb/)
@@ -64,13 +64,23 @@ The ExpenseReport example currently exists in the following languages:
 ## Planned languages
 (in no particular order and with no guarantee)
 
+- ABAP
+- Amiga E
+- AMOS
+- Assembler (m68k-amigaos) (if there is demand, I could add a few more, like arm-linux, aarch64-linux, i686-linux, amd64-linux)
+- bash
 - Eiffel
 - Elm
 - Erlang
+- Forth
 - Logo
 - Modula-2 (once the linker starts working again)
 - Oberon
+- OCaml
 - R
+- Scratch
+- WebAssembly
+- zsh
 
 ## Languages explicitly not planned
 - Brainfuck
