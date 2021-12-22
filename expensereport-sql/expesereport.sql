@@ -12,7 +12,7 @@ INSERT INTO Expenses (type, amount) VALUES
 ("breakfast", 1001),
 ("car_rental", 4);
 
-SELECT printf("Expense report:");
+SELECT printf("Expense report: %s", datetime('now'));
 SELECT printf("%s	%s	%s", type, amount, substr(" X", (type = "dinner" and amount > 5000 or type = "breakfast" and amount > 1000) + 1, 1))
     FROM Expenses;
 SELECT printf("Meal expenses: %s", sum(amount))
