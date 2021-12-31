@@ -16,11 +16,12 @@ The goal is to support the following new feature as best as you can:
 
 ## Supported Languages
 The ExpenseReport example currently exists in the following languages:
-- [Ada](expensereport-ada)
-- [BASIC](expensereport-abs) (Amiga BASIC, Commodore Amiga) ⇐ Quite amazing! First BASIC without line numbers!
-- [BASIC](expensereport-bwb) (Bywater BASIC, Linux) (very similar to Commodore BASIC)
-- [BASIC](expensereport-c64) (Commodore BASIC, Commodore 64)
-- [BASIC](expensereport-cpc) (Locomotive BASIC, Amstrad CPC)
+- [Ada](expensereport-ada/)
+- [bash](expensereport-bash/)
+- [BASIC](expensereport-abs/) (Amiga BASIC, Commodore Amiga) ⇐ Quite amazing! First BASIC without line numbers!
+- [BASIC](expensereport-bwb/) (Bywater BASIC, Linux) (very similar to Commodore BASIC)
+- [BASIC](expensereport-c64/) (Commodore BASIC, Commodore 64)
+- [BASIC](expensereport-cpc/) (Locomotive BASIC, Amstrad CPC)
 - [C](expensereport-c/)
 - [C#](expensereport-csharp/)
 - [C++](expensereport-cxx/)
@@ -69,7 +70,6 @@ The ExpenseReport example currently exists in the following languages:
 - Amiga E
 - AMOS
 - Assembler (m68k-amigaos) (if there is demand, I could add a few more, like arm-linux, aarch64-linux, i686-linux, amd64-linux)
-- bash
 - Eiffel
 - Elm
 - Erlang
