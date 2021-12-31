@@ -60,6 +60,7 @@ The ExpenseReport example currently exists in the following languages:
 - [TypeScript](expensereport-typescript/)
 - [Visual BASIC](expensereport-vb/)
 - [XML/XSLT](expensereport-xslt/)
+- [Zig](expensereport-zig/)
 
 ## Planned languages
 (in no particular order and with no guarantee)
