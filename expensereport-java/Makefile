@@ -1,10 +1,9 @@
 .PHONY: all
-all:
-	./mvnw package
+all: build
 
-.PHONY: clean
-clean::
-	./mvnw clean
+.PHONY: build clean pitest
+build clean pitest:
+	./gradlew $@
 
 -include .User.mk
 -include ~/.User.mk
