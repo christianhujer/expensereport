@@ -1,4 +1,4 @@
-#!/usr/bin/groovy
+#!/usr/bin/env groovy
 
 enum ExpenseType {
     DINNER,
