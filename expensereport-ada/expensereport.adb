@@ -17,11 +17,13 @@ procedure expensereport is
         expenseName : Unbounded_String;
         mealOverExpensesMarker : Character := ' ';
     begin
-        Put_Line("Expense Report");
+        Put_Line("Expenses:");
+
         for i in expenses'Range loop
             if (expenses(i).eType = Breakfast or expenses(i).eType = Dinner) then
                 mealExpenses := mealExpenses + expenses(i).amount;
             end if;
+
             expenseName := To_Unbounded_String("Foo" & "Foo");
             case expenses(i).eType is
                 when Breakfast =>
@@ -31,14 +33,18 @@ procedure expensereport is
                 when CarRental =>
                     expenseName := To_Unbounded_String("Car Rental");
             end case;
+
             if ((expenses(i).eType = Breakfast and expenses(i).amount > 1000) or (expenses(i).eType = Dinner and expenses(i).amount > 5000)) then
                 mealOverExpensesMarker := 'X';
             else
                 mealOverExpensesMarker := ' ';
             end if;
+
             Put_Line(expenseName & Ada.Characters.Latin_1.HT & Ada.Strings.Fixed.Trim(Integer'Image(expenses(i).amount), Ada.Strings.Left) & Ada.Characters.Latin_1.HT & mealOverExpensesMarker);
+
             total := total + expenses(i).amount;
         end loop;
+
         Put_Line("Meal expenses:" & Integer'Image(mealExpenses));
         Put_Line("Total expenses:" & Integer'Image(total));
     end printReport;

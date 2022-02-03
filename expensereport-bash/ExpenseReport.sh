@@ -1,9 +1,11 @@
 #!/bin/bash
 
 function printReport() {
-    echo "Expenses: $(date)"
     total=0
     meals=0
+
+    echo "Expenses: $(date)"
+
     type=0
     amount=1
     while read -a expense ; do
@@ -20,8 +22,10 @@ function printReport() {
         mealOverExpensesMarker=$(if [ "${expense[$type]}" = "DINNER" ] && [ "${expense[$amount]}" -gt 5000 ] || [ "${expense[$type]}" = "BREAKFAST" ] && [ "${expense[$amount]}" -gt 1000 ] ; then echo "X" ; else echo " " ; fi)
 
         echo -e "$expenseName\t${expense[$amount]}\t$mealOverExpensesMarker"
+
         total=$(( ${total} + ${expense[$amount]} ))
     done
+
     echo "Meal expenses: $meals"
     echo "Total expenses: $total"
 }
