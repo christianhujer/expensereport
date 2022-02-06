@@ -18,10 +18,10 @@ The goal is to support the following new feature as best as you can:
 The ExpenseReport example currently exists in the following languages:
 - [Ada](expensereport-ada/)
 - [bash](expensereport-bash/)
-- [BASIC](expensereport-abs/) (Amiga BASIC, Commodore Amiga) ⇐ Quite amazing! First BASIC without line numbers!
-- [BASIC](expensereport-bwb/) (Bywater BASIC, Linux) (very similar to Commodore BASIC)
-- [BASIC](expensereport-c64/) (Commodore BASIC, Commodore 64)
-- [BASIC](expensereport-cpc/) (Locomotive BASIC, Amstrad CPC)
+- [BASIC](expensereport-basic-amiga/) (Amiga BASIC, Commodore Amiga) ⇐ Quite amazing! First BASIC without line numbers!
+- [BASIC](expensereport-basic-bywater/) (Bywater BASIC, Linux) (very similar to Commodore BASIC)
+- [BASIC](expensereport-basic-c64/) (Commodore BASIC, Commodore 64)
+- [BASIC](expensereport-basic-locomotive/) (Locomotive BASIC, Amstrad CPC)
 - [C](expensereport-c/)
 - [C#](expensereport-csharp/)
 - [C++](expensereport-cxx/)
