@@ -62,6 +62,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Visual BASIC](expensereport-vb/)
 - [XML/XSLT](expensereport-xslt/)
 - [Zig](expensereport-zig/)
+- [zsh](expensereport-zsh/)
 
 ## Planned languages
 (in no particular order and with no guarantee)
@@ -81,7 +82,6 @@ The ExpenseReport example currently exists in the following languages:
 - R
 - Scratch
 - WebAssembly
-- zsh
 
 ## Languages explicitly not planned
 - Brainfuck
