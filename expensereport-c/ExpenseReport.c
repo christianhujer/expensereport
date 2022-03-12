@@ -1,18 +1,8 @@
+#include "ExpenseReport.h"
 #include <stdio.h>
 #include <time.h>
 
-enum Type {
-    DINNER,
-    BREAKFAST,
-    CAR_RENTAL
-};
-
-struct Expense {
-    enum Type type;
-    int amount;
-};
-
-void printExpenses(struct Expense *expenses[], size_t numExpenses) {
+void printReport(struct Expense expenses[], size_t numExpenses) {
     int total = 0;
     int mealExpenses = 0;
 
@@ -20,17 +10,15 @@ void printExpenses(struct Expense *expenses[], size_t numExpenses) {
     if (time(&now) == -1)
         return;
 
-    printf("Expenses %s\n", ctime(&now));
+    printf("Expenses %s", ctime(&now));
 
     for (size_t i = 0; i < numExpenses; i++) {
-        struct Expense *expense = expenses[i];
-
-        if (expense->type == DINNER || expense->type == BREAKFAST) {
-            mealExpenses += expense->amount;
+        if (expenses[i].type == DINNER || expenses[i].type == BREAKFAST) {
+            mealExpenses += expenses[i].amount;
         }
 
         char *expenseName;
-        switch (expense->type) {
+        switch (expenses[i].type) {
         case DINNER:
             expenseName = "Dinner";
             break;
@@ -42,10 +30,10 @@ void printExpenses(struct Expense *expenses[], size_t numExpenses) {
             break;
         }
 
-        char *mealOverExpensesMarker = ((expense->type == DINNER && expense->amount > 5000) || (expense->type == BREAKFAST && expense->amount > 1000)) ? "X" : " ";
+        char *mealOverExpensesMarker = ((expenses[i].type == DINNER && expenses[i].amount > 5000) || (expenses[i].type == BREAKFAST && expenses[i].amount > 1000)) ? "X" : " ";
 
-        printf("%s\t%d\t%s\n", expenseName, expense->amount, mealOverExpensesMarker);
-        total += expense->amount;
+        printf("%s\t%d\t%s\n", expenseName, expenses[i].amount, mealOverExpensesMarker);
+        total += expenses[i].amount;
     }
 
     printf("Meal expenses: %d\n", mealExpenses);
