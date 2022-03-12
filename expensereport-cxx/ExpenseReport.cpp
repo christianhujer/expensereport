@@ -1,21 +1,9 @@
 #include <chrono>
 #include <iostream>
 #include <iterator>
-#include <list>
+#include "ExpenseReport.h"
 
 using namespace std;
-
-enum Type
-{
-    BREAKFAST, DINNER, CAR_RENTAL
-};
-
-class Expense
-{
-    public:
-    Type type;
-    int amount;
-};
 
 void printReport(list<Expense> expenses)
 {
@@ -23,7 +11,7 @@ void printReport(list<Expense> expenses)
     int mealExpenses = 0;
 
     auto now = chrono::system_clock::to_time_t(chrono::system_clock::now());
-    cout << "Expenses " << ctime(&now) << '\n';
+    cout << "Expenses " << ctime(&now);
 
     for (list<Expense>::iterator expense = expenses.begin(); expense != expenses.end(); ++expense) {
         if (expense->type == BREAKFAST || expense->type == DINNER) {
