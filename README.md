@@ -137,8 +137,9 @@ To see solutions, switch to the [solutions branch](https://github.com/christianh
 **Warning** The solutions branch will be rebased!
 
 Currently, soltuions exist in the following languages:
-- [Java](expensereport-java/)
-- [Kotlin](expensereport-kotlin/)
+- [Go](expensereport-go/) (with BDD)
+- [Java](expensereport-java/) (with BDD)
+- [Kotlin](expensereport-kotlin/) (with BDD)
 - [Rust](expensereport-rust/)
 
 ### Solution Rationale
