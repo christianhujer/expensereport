@@ -24,7 +24,7 @@ repositories {
 
 dependencyManagement {
     dependencies {
-        dependencySet("io.cucumber:7.1.0") {
+        dependencySet("io.cucumber:7.2.3") {
             entry("cucumber-java")
             entry("cucumber-junit-platform-engine")
         }
