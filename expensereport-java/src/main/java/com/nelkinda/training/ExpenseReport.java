@@ -24,17 +24,21 @@ enum ExpenseType {
     }
 }
 
-class Expense {
-    final ExpenseType type;
-    final int amount;
-    public Expense(final ExpenseType type, final int amount) {
-        this.type = type;
-        this.amount = amount;
+record Expense(
+        ExpenseType type,
+        int amount
+) {
+    String getName() {
+        return type.name;
     }
 
-    String getName() { return type.name; }
-    boolean isMeal() { return type.isMeal; }
-    boolean isOverLimit() { return amount > type.limit; }
+    boolean isMeal() {
+        return type.isMeal;
+    }
+
+    boolean isOverLimit() {
+        return amount > type.limit;
+    }
 }
 
 public class ExpenseReport {
@@ -61,7 +65,7 @@ public class ExpenseReport {
     }
 
     private String detail(final Expense expense) {
-        return expense.getName() + "\t" + expense.amount + "\t" + getOverLimitMarker(expense) + "\n";
+        return expense.getName() + "\t" + expense.amount() + "\t" + getOverLimitMarker(expense) + "\n";
     }
 
     private String getOverLimitMarker(final Expense expense) {
@@ -84,7 +88,7 @@ public class ExpenseReport {
     private int sumExpenses(final List<Expense> expenses, final Predicate<Expense> predicate) {
         return expenses.stream()
                 .filter(predicate)
-                .mapToInt(it -> it.amount)
+                .mapToInt(Expense::amount)
                 .sum();
     }
 }

@@ -13,39 +13,27 @@ import static com.nelkinda.training.ExpenseType.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ExpenseReportTest {
-    private static final PrintStream originalStdout = System.out;
-    private final ByteArrayOutputStream interceptedStdout = new ByteArrayOutputStream();
-
-    @BeforeEach
-    void interceptStdout() {
-        System.setOut(new PrintStream(interceptedStdout));
-    }
-
-    @AfterEach
-    void restoreStdout() {
-        System.setOut(originalStdout);
-    }
-
     @Test
     void characterizePrintReport() {
         final Date now = new Date();
-        new ExpenseReport().printReport(
-                List.of(
-                        new Expense(BREAKFAST, 1),
-                        new Expense(BREAKFAST, 1000),
-                        new Expense(BREAKFAST, 1001),
-                        new Expense(DINNER, 2),
-                        new Expense(DINNER, 5000),
-                        new Expense(DINNER, 5001),
-                        new Expense(CAR_RENTAL, 4),
-                        new Expense(LUNCH, 8),
-                        new Expense(LUNCH, 2000),
-                        new Expense(LUNCH, 2001)
-                ),
-                now
-        );
-        final String actual = interceptedStdout.toString();
-        final String expected = "Expenses " + now + "\n" +
+        final String actualReport = Interceptor.interceptStdout(() -> {
+            new ExpenseReport().printReport(
+                    List.of(
+                            new Expense(BREAKFAST, 1),
+                            new Expense(BREAKFAST, 1000),
+                            new Expense(BREAKFAST, 1001),
+                            new Expense(DINNER, 2),
+                            new Expense(DINNER, 5000),
+                            new Expense(DINNER, 5001),
+                            new Expense(CAR_RENTAL, 4),
+                            new Expense(LUNCH, 8),
+                            new Expense(LUNCH, 2000),
+                            new Expense(LUNCH, 2001)
+                    ),
+                    now
+            );
+        });
+        final String expectedReport = "Expenses " + now + "\n" +
                 "Breakfast\t1\t \n" +
                 "Breakfast\t1000\t \n" +
                 "Breakfast\t1001\tX\n" +
@@ -58,6 +46,6 @@ class ExpenseReportTest {
                 "Lunch\t2001\tX\n" +
                 "Meal expenses: 16014\n" +
                 "Total expenses: 16018\n";
-        assertEquals(expected, actual);
+        assertEquals(expectedReport, actualReport);
     }
 }
