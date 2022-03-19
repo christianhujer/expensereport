@@ -1,3 +1,3 @@
 .PHONY: all
 all:
-	go build ./...
+	~/go/bin/godog
