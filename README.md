@@ -33,7 +33,7 @@ The ExpenseReport example currently exists in the following languages:
 - [F#](expensereport-fsharp/)
 - [Fortran](expensereport-fortran/)
 - [Go](expensereport-go/)
-- [Groovy](expensereport-groovy/)
+- [Groovy](expensereport-groovy-script/)
 - [Haskell](expensereport-haskell/)
 - [Java](expensereport-java/)
 - [JavaScript](expensereport-javascript/)
