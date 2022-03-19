@@ -89,7 +89,7 @@ The ExpenseReport example currently exists in the following languages:
 - Whitespace
 
 ## Solutions
-To see solutions, switch to the branch solutions.
+To see solutions, switch to the [solutions branch](https://github.com/christianhujer/expensereport/tree/solutions).
 
 **Warning** The solutions branch will be rebased!
 
