@@ -53,7 +53,7 @@ main
 	jsr	(_LVOFindTask,a6)
 	move.l	d0,a0
 	tst.l	(172,a0)		; CLI Process?
-	bne	.cliOk
+	bne.s	.cliOk
 .cliError
 	move.l	#2,(exitStatus)
 	bra.s	.closeLocale
@@ -85,15 +85,22 @@ printReport
 	move.l	a0,a2
 	moveq	#0,d5	; mealExpenses
 	moveq	#0,d6	; totalExpenses
+
+	move.l	(dosBase),a6
+
+	move.l	(stdout),d1
+	move.l	#expenseReport,d2
+	moveq	#expenseReport-expenseReportEnd,d3
+	jsr	(_LVOWrite,a6)
 .loop
 	move.l	(a2),d0
 	beq	.loopDone
 
-	cmp	#DINNER,d0
-	beq	.meal
-	cmp	#BREAKFAST,d0
-	beq	.meal
-	bra	.notMeal
+	cmp.l	#DINNER,d0
+	beq.s	.meal
+	cmp.l	#BREAKFAST,d0
+	beq.s	.meal
+	bra.s	.notMeal
 .meal
 	move.l	(4,a2),d1
 	add.l	d1,d5
@@ -109,7 +116,6 @@ printReport
 	sub.l	d2,d3
 	subq	#1,d3
 	move.l	(stdout),d1
-	move.l	(dosBase),a6
 	jsr	(_LVOWrite,a6)
 
 	lea	(tab),a0
@@ -130,7 +136,6 @@ printReport
 	sub.l	d2,d3
 	subq	#1,d3
 	move.l	(stdout),d1
-	move.l	(dosBase),a6
 	jsr	(_LVOWrite,a6)
 
 	lea	(tab),a0
@@ -141,19 +146,19 @@ printReport
 
 	move.l	(a2),d0
 	move.l	(4,a2),d1
-	cmp	#DINNER,d0
-	bne	.notDinner
-	cmp	#5000,d1
-	bgt	.mealOverExpense
-	bra	.mealNotOverExpense
+	cmp.l	#DINNER,d0
+	bne.s	.notDinner
+	cmp.l	#5000,d1
+	bgt.s	.mealOverExpense
+	bra.s	.mealNotOverExpense
 .notDinner
-	cmp	#BREAKFAST,d0
-	bne	.notBreakfast
-	cmp	#1000,d1
-	bgt	.mealOverExpense
-	bra	.mealNotOverExpense
+	cmp.l	#BREAKFAST,d0
+	bne.s	.notBreakfast
+	cmp.l	#1000,d1
+	bgt.s	.mealOverExpense
+	bra.s	.mealNotOverExpense
 .notBreakfast
-	bra	.mealNotOverExpense
+	bra.s	.mealNotOverExpense
 .mealOverExpense
 	lea	(mealOverExpensesMarker),a0
 	bra.s	.printMealOverExpensesMarker
@@ -174,7 +179,7 @@ printReport
 	move.l	(4,a2),d1
 	add.l	d1,d6
 
-	add.l	#8,a2	; next expense
+	addq	#8,a2	; next expense
 	bra	.loop
 .loopDone
 
@@ -272,7 +277,7 @@ itoa10
 .count
 	move.b	(a1)+,d1
 	bne.s	.count
-	sub.l	#2,a1
+	subq	#2,a1
 
 .reverse
 	cmp.l	a0,a1
@@ -280,8 +285,8 @@ itoa10
 	move.b	(a0),d1
 	move.b	(a1),(a0)
 	move.b	d1,(a1)
-	sub.l	#1,a1
-	add.l	#1,a0
+	subq	#1,a1
+	addq	#1,a0
 	bra.s	.reverse
 .reverseDone
 	rts
