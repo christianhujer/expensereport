@@ -4,7 +4,7 @@ _LVOFindTask		EQU	-294
 
 _LVOWrite		EQU	-48
 
-OS_VERSION		EQU	38
+OS_VERSION		EQU	33
 
 DINNER		EQU	1
 BREAKFAST	EQU	2
@@ -26,28 +26,6 @@ main
 	bra	.exit
 .dosOk
 
-.openIntuition
-	lea	(intuitionName),a1
-	moveq	#OS_VERSION,d0
-	jsr	(_LVOOpenLibrary,a6)
-	move.l	d0,intuitionBase
-	bne.s	.intuitionOk
-.intuitionError
-	move.l	#2,(exitStatus)
-	bra.s	.closeDos
-.intuitionOk
-
-.openLocale
-	lea	(localeName),a1
-	moveq	#OS_VERSION,d0
-	jsr	(_LVOOpenLibrary,a6)
-	move.l	d0,localeBase
-	bne.s	.localeOk
-.localeError
-	move.l	#2,(exitStatus)
-	bra.s	.closeIntuition
-.localeOk
-
 .cli
 	sub.l	a1,a1
 	jsr	(_LVOFindTask,a6)
@@ -56,21 +34,13 @@ main
 	bne.s	.cliOk
 .cliError
 	move.l	#2,(exitStatus)
-	bra.s	.closeLocale
+	bra.s	.closeDos
 .cliOk
 	move.l	(160,a0),d0
 	move.l	d0,(stdout)
 
 	lea	(expenses),a0
 	bsr.s	printReport
-
-.closeLocale
-	move.l	(localeBase),a1
-	jsr	(_LVOCloseLibrary,a6)
-
-.closeIntuition
-	move.l	(intuitionBase),a1
-	jsr	(_LVOCloseLibrary,a6)
 
 .closeDos
 	move.l	(dosBase),a1
@@ -90,7 +60,7 @@ printReport
 
 	move.l	(stdout),d1
 	move.l	#expenseReport,d2
-	moveq	#expenseReport-expenseReportEnd,d3
+	moveq	#expenseReportEnd-expenseReport,d3
 	jsr	(_LVOWrite,a6)
 .loop
 	move.l	(a2),d0
@@ -293,8 +263,6 @@ itoa10
 
 	SECTION	DATA
 dosName		dc.b	"dos.library",0
-intuitionName	dc.b	"intuition.library",0
-localeName	dc.b	"locale.library",0
 
 	SECTION	DATA
 			align.l
@@ -326,8 +294,6 @@ expenses
 	SECTION	BSS
 exitStatus	ds.l	1
 dosBase		ds.l	1
-intuitionBase	ds.l	1
-localeBase	ds.l	1
 stdout		ds.l	1
 buffer		ds.b	11
 
