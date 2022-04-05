@@ -64,7 +64,7 @@ printReport
 	jsr	(_LVOWrite,a6)
 
 	move.l	(stdout),d1
-	move.l	(newline),d2
+	move.l	#newline,d2
 	moveq	#1,d3
 	jsr	(_LVOWrite,a6)
 
