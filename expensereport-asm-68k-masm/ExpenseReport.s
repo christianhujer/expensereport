@@ -62,6 +62,12 @@ printReport
 	move.l	#expenseReport,d2
 	moveq	#expenseReportEnd-expenseReport,d3
 	jsr	(_LVOWrite,a6)
+
+	move.l	(stdout),d1
+	move.l	(newline),d2
+	moveq	#1,d3
+	jsr	(_LVOWrite,a6)
+
 .loop
 	move.l	(a2),d0
 	beq	.loopDone
@@ -227,6 +233,7 @@ strlen
 ; @param a0 buffer in which to convert the number
 ; @param d0 number to convert
 ; @return d0 buffer from a0
+; @destroys d1,a0,a1
 itoa10
 	movem.l	a0/d2,-(sp)
 .loop
