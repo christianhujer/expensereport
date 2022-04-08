@@ -1,8 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp2.2</TargetFramework>
-        <RootNamespace>expensereport_csharp</RootNamespace>
+		<TargetFramework>net5.0</TargetFramework>
+		<nullable>Enable</nullable>
+		<RootNamespace>expensereport_csharp</RootNamespace>
     </PropertyGroup>
 
 </Project>
