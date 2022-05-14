@@ -71,6 +71,7 @@ The ExpenseReport example currently exists in the following languages:
 - ABAP
 - Amiga E
 - AMOS
+- APL
 - Assembler (if there is demand, I could add a few more, like arm-linux, aarch64-linux, i686-linux, amd64-linux)
 - Dark
 - Eiffel
