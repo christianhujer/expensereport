@@ -3,17 +3,11 @@
 
 #include <stddef.h>
 
-enum Type {
-    DINNER,
-    BREAKFAST,
-    CAR_RENTAL
-};
-
-struct Expense {
-    enum Type type;
-    int amount;
-};
+#include "Expense.h"
 
 extern void printReport(struct Expense expenses[], size_t numExpenses);
+
+extern int sumMealExpenses(const struct Expense expenses[], size_t numExpenses);
+extern int sumTotal(const struct Expense expenses[], size_t numExpenses);
 
 #endif
