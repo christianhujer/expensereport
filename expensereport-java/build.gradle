@@ -17,7 +17,7 @@ repositories {
 
 dependencyManagement {
     dependencies {
-        dependencySet(group: 'io.cucumber', version: '7.2.3') {
+        dependencySet(group: 'io.cucumber', version: '7.3.4') {
             entry 'cucumber-java'
             entry 'cucumber-junit-platform-engine'
         }
@@ -35,12 +35,12 @@ dependencyManagement {
             entry 'junit-platform-suite-commons'
             entry 'junit-platform-suite-engine'
         }
-        dependencySet(group: 'org.mockito', version: '4.3.1') {
+        dependencySet(group: 'org.mockito', version: '4.5.1') {
             entry 'mockito-core'
             entry 'mockito-inline'
         }
         dependency 'org.pitest:pitest-junit5-plugin:0.15'
-        dependency 'org.pitest:pitest-command-line:1.7.3'
+        dependency 'org.pitest:pitest-command-line:1.8.0'
         dependency 'org.projectlombok:lombok:1.18.22'
     }
 }
@@ -95,7 +95,7 @@ test.finalizedBy jacocoTestReport
 
 pitest {
     targetClasses.set(['com.nelkinda.training.*'])
-    pitestVersion.set('1.7.3')
+    pitestVersion.set('1.8.0')
     timestampedReports.set(false)
     testPlugin.set('junit5')
     outputFormats.set(['XML', 'HTML'])
@@ -109,6 +109,6 @@ test {
 }
 
 wrapper {
-    gradleVersion '7.4.1'
+    gradleVersion '7.4.2'
     distributionType = Wrapper.DistributionType.ALL
 }

@@ -24,7 +24,7 @@ repositories {
 
 dependencyManagement {
     dependencies {
-        dependencySet("io.cucumber:7.2.3") {
+        dependencySet("io.cucumber:7.3.4") {
             entry("cucumber-java")
             entry("cucumber-junit-platform-engine")
         }
@@ -43,7 +43,7 @@ dependencyManagement {
             entry("junit-platform-suite-engine")
         }
         dependency("org.pitest:pitest-junit5-plugin:0.15")
-        dependency("org.pitest:pitest-command-line:1.7.3")
+        dependency("org.pitest:pitest-command-line:1.8.0")
     }
 }
 
@@ -109,7 +109,7 @@ tasks.check {
 configure<info.solidsoft.gradle.pitest.PitestPluginExtension> {
     avoidCallsTo.set(setOf("kotlin.jvm.internal"))
     targetClasses.set(setOf("com.nelkinda.training.*"))
-    pitestVersion.set("1.7.3")
+    pitestVersion.set("1.8.0")
     timestampedReports.set(false)
     outputFormats.set(setOf("XML", "HTML"))
     mutators.set(setOf("DEFAULTS", "STRONGER", "CONSTRUCTOR_CALLS", "INLINE_CONSTS", "REMOVE_CONDITIONALS", "REMOVE_INCREMENTS"))
@@ -122,6 +122,6 @@ tasks.withType<Test> {
 }
 
 tasks.wrapper {
-    gradleVersion = "7.4.1"
+    gradleVersion = "7.4.2"
     distributionType = Wrapper.DistributionType.ALL
 }
