@@ -135,6 +135,7 @@ Find a more complete list on [Wikipedia](https://en.wikipedia.org/wiki/List_of_p
 **Warning** The solutions branch will be rebased!
 
 Currently, solutions exist in the following languages:
+- [C++](expensereport-cxx/)
 - [Go](expensereport-go/) (with BDD)
 - [Java](expensereport-java/) (with BDD)
 - [Kotlin](expensereport-kotlin/) (with BDD)

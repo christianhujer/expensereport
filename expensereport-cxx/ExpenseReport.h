@@ -2,21 +2,13 @@
 #define EXPENSEREPORT_H
 
 #include <list>
+#include <iostream>
+#include <string>
 
-using namespace std;
+#include "ExpenseType.h"
+#include "Expense.h"
 
-enum Type
-{
-    BREAKFAST, DINNER, CAR_RENTAL
-};
-
-class Expense
-{
-    public:
-    Type type;
-    int amount;
-};
-
-extern void printReport(list<Expense> expenses);
+extern void printReport(const std::list<Expense>& expenses);
+extern void printReport(std::ostream& out, const std::list<Expense>& expenses);
 
 #endif
