@@ -167,8 +167,9 @@ Currently, soltuions exist in the following languages:
 - [Rust](expensereport-rust/)
 
 ### Solution Rationale
-- Make adding the new requirement (lunch with an expense limit 2000) as easy and simple and error-free as possible. That means solving the OCP-violation of `printReport()`.
+- Make adding the new requirement (lunch with an expense limit 2000) as easy and simple and error-free as possible. That means solving the OCP-violations of `printReport()`.
 - Small ("atomic") functions. Extract until you can no longer reasonably extract further methods.
+- A balance between a language independent design expressed idiomatic in the target language.
 
 ## Credits and License
 I first encountered the ExpenseReport example during a bootcamp at Equal Experts.
