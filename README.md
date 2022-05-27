@@ -18,6 +18,7 @@ The goal is to support the following new feature as best as you can:
 The ExpenseReport example currently exists in the following languages:
 - [Ada](expensereport-ada/)
 - [Assembler](expensereport-asm-68k-masm/) (Motorola 68020, Amiga OS, MaxonASM)
+- [Assembler](expensereport-asm-amd64-linux-gasm/) (AMD64/Intel x86-64, Linux, GNU Assembler)
 - [bash](expensereport-bash/)
 - [BASIC](expensereport-basic-amiga/) (Amiga BASIC, Commodore Amiga) ⇐ Quite amazing! First BASIC without line numbers!
 - [BASIC](expensereport-basic-bywater/) (Bywater BASIC, Linux) (very similar to Commodore BASIC)
@@ -70,9 +71,10 @@ The ExpenseReport example currently exists in the following languages:
 
 - ABAP
 - Amiga E
-- AMOS
+- AMOS BASIC
 - APL
-- Assembler (if there is demand, I could add a few more, like arm-linux, aarch64-linux, i686-linux, amd64-linux)
+- More Assembler implementations (arm, aarch64, i686, powerpc, powerpc64, mpis, mips64, sparc, sparc64, risc-v, etc, usually on Linux)
+- Cluster
 - Dark
 - Eiffel
 - Elm
@@ -84,6 +86,7 @@ The ExpenseReport example currently exists in the following languages:
 - Oberon
 - OCaml
 - R
+- REBOL
 - Scratch
 - WebAssembly
 
