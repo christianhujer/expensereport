@@ -136,6 +136,7 @@ Find a more complete list on [Wikipedia](https://en.wikipedia.org/wiki/List_of_p
 
 Currently, solutions exist in the following languages:
 - [C](expensereport-c/)
+- [C#](expensereport-csharp/)
 - [C++](expensereport-cxx/)
 - [Fortran](expensereport-fortran/)
 - [Go](expensereport-go/) (with BDD)

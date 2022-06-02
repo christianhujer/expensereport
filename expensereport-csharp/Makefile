@@ -1,3 +1,4 @@
 .PHONY: all
+## Build and test the project.
 all:
-	dotnet build
+	dotnet test
