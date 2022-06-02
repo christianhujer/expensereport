@@ -11,3 +11,5 @@ Kata for Coding Dojos.
 - when using `nvm`: run `nvm install`
 - install dependencies: `npm install`
 - run tests: `npm test` or `make test`
+- run tests in watch mode: `npm run test:watch`
+- reformat code with Prettier: `npm run prettier`
