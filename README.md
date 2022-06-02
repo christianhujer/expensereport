@@ -81,6 +81,7 @@ The ExpenseReport example currently exists in the following languages:
 - Erlang
 - Forth
 - Gosu
+- Hare
 - Logo
 - Modula-2 (once the linker starts working again)
 - Oberon
