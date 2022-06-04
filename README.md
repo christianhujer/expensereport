@@ -143,6 +143,7 @@ Currently, solutions exist in the following languages:
 - [Java](expensereport-java/) (with BDD)
 - [Kotlin](expensereport-kotlin/) (with BDD)
 - [Rust](expensereport-rust/)
+- [SQL](expensereport-sql/)
 
 ### Solution Rationale
 - Make adding the new requirement (lunch with an expense limit 2000) as easy and simple and error-free as possible. That means solving the OCP-violations of `printReport()`.
