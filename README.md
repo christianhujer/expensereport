@@ -75,6 +75,7 @@ The ExpenseReport example currently exists in the following languages:
 - APL
 - More Assembler implementations (arm, aarch64, i686, powerpc, powerpc64, mpis, mips64, sparc, sparc64, risc-v, etc, usually on Linux)
 - Cluster
+- Curry
 - Dark
 - Eiffel
 - Elm
@@ -82,7 +83,9 @@ The ExpenseReport example currently exists in the following languages:
 - Forth
 - Gosu
 - Hare
+- Lobster
 - Logo
+- Mercury
 - Modula-2 (once the linker starts working again)
 - Oberon
 - OCaml
@@ -93,6 +96,7 @@ The ExpenseReport example currently exists in the following languages:
 
 ## Languages explicitly not planned
 - Brainfuck
+- False
 - Malbolge
 - Whitespace
 
