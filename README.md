@@ -148,6 +148,7 @@ Currently, solutions exist in the following languages:
 - [Rexx](expensereport-rexx/) (tested with Regina Rexx and ARexx)
 - [Rust](expensereport-rust/)
 - [SQL](expensereport-sql/)
+- [XML/XSLT](expensereport-xslt/)
 
 ### Solution Rationale
 - Make adding the new requirement (lunch with an expense limit 2000) as easy and simple and error-free as possible. That means solving the OCP-violations of `printReport()`.
