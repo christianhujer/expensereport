@@ -142,6 +142,7 @@ Currently, solutions exist in the following languages:
 - [C++](expensereport-cxx/)
 - [Fortran](expensereport-fortran/)
 - [Go](expensereport-go/) (with BDD)
+- [Groovy](expensereport-groovy-script/)
 - [Java](expensereport-java/) (with BDD)
 - [Kotlin](expensereport-kotlin/) (with BDD)
 - [Pascal](expensereport-pascal/)
