@@ -135,6 +135,7 @@ Find a more complete list on [Wikipedia](https://en.wikipedia.org/wiki/List_of_p
 **Warning** The solutions branch will be rebased!
 
 Currently, solutions exist in the following languages:
+- [Ada](expensereport-ada/)
 - [Assembler](expensereport-asm-68k-masm/) (Motorola 68020, Amiga OS, MaxonASM)
 - [C](expensereport-c/)
 - [C#](expensereport-csharp/)
