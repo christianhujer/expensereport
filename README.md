@@ -143,6 +143,7 @@ Currently, solutions exist in the following languages:
 - [Go](expensereport-go/) (with BDD)
 - [Java](expensereport-java/) (with BDD)
 - [Kotlin](expensereport-kotlin/) (with BDD)
+- [Pascal](expensereport-pascal/)
 - [Rust](expensereport-rust/)
 - [SQL](expensereport-sql/)
 
