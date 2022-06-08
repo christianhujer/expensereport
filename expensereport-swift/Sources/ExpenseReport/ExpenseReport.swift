@@ -17,7 +17,7 @@ class ExpenseReport {
         var total = 0
         print("Expense Report \(Date())")
         for expense in expenses {
-            if (expense.type == .dinner || expense.type == .breakfast) {
+            if expense.type == .dinner || expense.type == .breakfast {
                 mealExpenses += expense.amount
             }
 
