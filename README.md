@@ -83,15 +83,18 @@ The ExpenseReport example currently exists in the following languages:
 - Forth
 - Gosu
 - Hare
+- Java Byte Code / JVM Assembler
 - Lobster
 - Logo
 - Mercury
 - Modula-2 (once the linker starts working again)
 - Oberon
 - OCaml
+- PostScript
 - R
 - REBOL
 - Scratch
+- TeX
 - WebAssembly
 
 ## Languages explicitly not planned
