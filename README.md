@@ -48,6 +48,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Pascal](expensereport-pascal/)
 - [Perl](expensereport-perl/)
 - [PHP](expensereport-php/)
+- [PostScript](expensereport-postscript/)
 - [Prolog](expensereport-prolog/)
 - [Python](expensereport-python/)
 - [Raku](expensereport-raku/) (Perl6)
@@ -90,7 +91,6 @@ The ExpenseReport example currently exists in the following languages:
 - Modula-2 (once the linker starts working again)
 - Oberon
 - OCaml
-- PostScript
 - R
 - REBOL
 - Scratch
