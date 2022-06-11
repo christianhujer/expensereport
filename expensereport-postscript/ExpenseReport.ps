@@ -1,16 +1,28 @@
+/dinner 1 def
+/breakfast 2 def
+/car_rental 3 def
+
 /printReport {
     (Expenses:) =
 
     dup
     {
-        dup 0 get print
+        dup 0 get
+            dup dinner eq { pop (Dinner)} {
+            dup breakfast eq { pop (Breakfast) } {
+            dup car_rental eq { pop (Car Rental) } {
+            pop ()
+            } ifelse
+            } ifelse
+            } ifelse
+            print
         (\t) print
         dup 1 get 10 string cvs print
         (\t) print
         dup
-            dup 0 get (Dinner) eq 2 1 roll 1 get 5000 gt and
+            dup 0 get dinner eq 2 1 roll 1 get 5000 gt and
         2 1 roll
-            dup 0 get (Breakfast) eq 2 1 roll 1 get 1000 gt and
+            dup 0 get breakfast eq 2 1 roll 1 get 1000 gt and
         or
         { (X) }
         { ( ) }
@@ -25,11 +37,11 @@
     {
         dup dup
         0 get
-        (Dinner)
+        dinner
         eq
         2 1 roll
         0 get
-        (Breakfast)
+        breakfast
         eq
         or
         { 1 get }
@@ -49,5 +61,5 @@
     =
 } def
 
-[[(Dinner) 5000] [(Dinner) 5001] [(Breakfast) 1000] [(Breakfast) 1001] [(Car Rental) 4]]
+[[dinner 5000] [dinner 5001] [breakfast 1000] [breakfast 1001] [car_rental 4]]
 printReport
