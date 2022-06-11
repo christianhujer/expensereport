@@ -147,6 +147,7 @@ Currently, solutions exist in the following languages:
 - [Java](expensereport-java/) (with BDD)
 - [Kotlin](expensereport-kotlin/) (with BDD)
 - [Pascal](expensereport-pascal/)
+- [PostScript](expensereport-postscript/)
 - [Rexx](expensereport-rexx/) (tested with Regina Rexx and ARexx)
 - [Rust](expensereport-rust/)
 - [SQL](expensereport-sql/)
