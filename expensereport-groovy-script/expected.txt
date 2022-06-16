@@ -1,4 +1,4 @@
-Expenses: Sun Jun 05 19:45:30 IST 2022
+Expenses: Sun Jun 05 19:45:30 UTC 2022
 Dinner	5000	 
 Dinner	5001	X
 Breakfast	1000	 
