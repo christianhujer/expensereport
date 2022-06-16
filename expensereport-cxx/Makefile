@@ -7,7 +7,7 @@ all: test
 
 .PHONY: test
 test: ExpenseReportTest
-	faketime '2022-05-10 13:40:55' ./ExpenseReportTest >actual.txt
+	faketime -f '2022-05-10 13:40:55' ./ExpenseReportTest >actual.txt
 	diff expected.txt actual.txt
 
 ExpenseReportTest: ExpenseReportTest.o ExpenseReport.o ExpenseType.o Expense.o
