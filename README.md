@@ -75,6 +75,7 @@ The ExpenseReport example currently exists in the following languages:
 - AMOS BASIC
 - APL
 - More Assembler implementations (arm, aarch64, i686, powerpc, powerpc64, mpis, mips64, sparc, sparc64, risc-v, etc, usually on Linux)
+- CLIPS
 - Cluster
 - Curry
 - Dark
@@ -94,6 +95,7 @@ The ExpenseReport example currently exists in the following languages:
 - R
 - REBOL
 - Scratch
+- SNOBOL
 - TeX
 - WebAssembly
 
@@ -103,6 +105,13 @@ The ExpenseReport example currently exists in the following languages:
 - Malbolge
 - Whitespace
 
+## Other plans
+- Make sure that all languages are providing the identical challenge.
+  To be practical, this will require the removal of the timestamp side-effect.
+- Provide the time-stamp side-effect on a separate branch.
+- Provide a test setup (without test) on a separate branch so that folks can choose whether they want to include the setup work in the kata or not.
+- Provide a level 2 challenge for creating an HTML report besides the Plain Text report.
+
 ## Solutions
 To see solutions, switch to the [solutions branch](https://github.com/christianhujer/expensereport/tree/solutions#solutions).
 
@@ -111,5 +120,6 @@ To see solutions, switch to the [solutions branch](https://github.com/christianh
 ## Credits
 I first encountered the ExpenseReport example during a bootcamp at Equal Experts.
 I also have seen the ExpenseReport example being used by Robert "Uncle Bob" C. Martin.
+However, he seems to not be the original author (https://twitter.com/unclebobmartin/status/1537063143326855176?s=20&t=lh_vVb9jUQmY6PYG50974w)
 I have tried to research its origins but so far I have failed.
 If you know who has first come up with this example, please get in touch with me.
