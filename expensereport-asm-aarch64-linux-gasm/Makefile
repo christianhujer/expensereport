@@ -5,7 +5,11 @@ LD:=aarch64-linux-gnu-ld
 ASFLAGS:=-g
 
 .PHONY: all
-all: ExpenseReport
+all: test
+
+.PHONY: test
+test: ExpenseReport
+	diff expected.txt <(./ExpenseReport)
 
 ExpenseReport: ExpenseReport.o
 	$(LD) -o $@ $^

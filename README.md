@@ -137,6 +137,7 @@ Find a more complete list on [Wikipedia](https://en.wikipedia.org/wiki/List_of_p
 Currently, solutions exist in the following languages:
 - [Ada](expensereport-ada/)
 - [Assembler](expensereport-asm-68k-masm/) (Motorola 68020, Amiga OS, MaxonASM)
+- [Assembler](expensereport-asm-aarch64-linux-gasm/) (AArch64, Linux, GNU Assembler)
 - [BASIC](expensereport-basic-amiga/) (Amiga BASIC, Commodore Amiga) ⇐ Quite amazing! First BASIC without line numbers!
 - [C](expensereport-c/)
 - [C#](expensereport-csharp/)
