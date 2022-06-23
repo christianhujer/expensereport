@@ -132,7 +132,7 @@ Find a more complete list on [Wikipedia](https://en.wikipedia.org/wiki/List_of_p
 - Provide a level 2 challenge for creating an HTML report besides the Plain Text report.
 
 ## Solutions
-**Warning** The solutions branch will be rebased!
+**Warning** The solutions branch will be rebased and force-pushed!
 
 Currently, solutions exist in the following languages:
 - [Ada](expensereport-ada/)
