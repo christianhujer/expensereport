@@ -18,9 +18,9 @@ class ExpenseTypes:
     CAR_RENTAL = ExpenseType("Car Rental", sys.maxsize, False)
     LUNCH = ExpenseType("Lunch", 2000, True)
 
-    @staticmethod
-    def value_of(name: str):
-        return getattr(ExpenseTypes, name)
+    @classmethod
+    def value_of(cls, name: str):
+        return getattr(cls, name)
 
 
 @dataclass(frozen=True)
