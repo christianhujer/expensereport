@@ -1,4 +1,5 @@
 behave
+black
 coverage
 flake8
 mypy

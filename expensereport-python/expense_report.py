@@ -1,7 +1,6 @@
 import locale
 import sys
 from datetime import datetime
-from typing import List
 from dataclasses import dataclass
 
 
@@ -40,28 +39,30 @@ class Expense:
 
 
 class ExpenseReport:
-    def print_report(self, expenses: List[Expense], timestamp=datetime.now()):
+    def print_report(self, expenses: list[Expense], timestamp=datetime.now()):
         print(self.generate_report(expenses, timestamp), end="")
 
-    def generate_report(self, expenses: List[Expense], timestamp=datetime.now()):
+    def generate_report(self, expenses: list[Expense], timestamp=datetime.now()):
         return self.header(timestamp) + self.body(expenses) + self.summary(expenses)
 
     def header(self, timestamp):
         return f"Expenses {timestamp.strftime(locale.nl_langinfo(locale.D_T_FMT))}\n"
 
-    def body(self, expenses: List[Expense]):
-        return "". join(map(self.detail, expenses))
+    def body(self, expenses: list[Expense]):
+        return "".join(map(self.detail, expenses))
 
     def detail(self, expense: Expense):
         over_limit_marker = "X" if expense.is_over_limit() else " "
         return f"{expense.name()}\t{expense.amount}\t{over_limit_marker}\n"
 
-    def summary(self, expenses: List[Expense]):
-        return (f"Meal expenses: {self.sum_meals(expenses)}\n"
-                f"Total expenses: {self.sum_total(expenses)}\n")
+    def summary(self, expenses: list[Expense]):
+        return (
+            f"Meal expenses: {self.sum_meals(expenses)}\n"
+            f"Total expenses: {self.sum_total(expenses)}\n"
+        )
 
-    def sum_total(self, expenses: List[Expense]):
+    def sum_total(self, expenses: list[Expense]):
         return sum(map(lambda e: e.amount, expenses))
 
-    def sum_meals(self, expenses: List[Expense]):
+    def sum_meals(self, expenses: list[Expense]):
         return sum(map(lambda e: e.amount, filter(Expense.is_meal, expenses)))
