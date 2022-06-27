@@ -150,6 +150,7 @@ Currently, solutions exist in the following languages:
 - [Kotlin](expensereport-kotlin/) (with BDD)
 - [Pascal](expensereport-pascal/)
 - [PostScript](expensereport-postscript/)
+- [Python](expensereport-python/) (with BDD)
 - [Rexx](expensereport-rexx/) (tested with Regina Rexx and ARexx)
 - [Rust](expensereport-rust/)
 - [SQL](expensereport-sql/)
