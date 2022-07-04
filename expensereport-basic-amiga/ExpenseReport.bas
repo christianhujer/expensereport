@@ -9,16 +9,13 @@ names$(3) = "Lunch":      limits(3) = 2000:  isMeal(3) = 1
 
 DEF FNisOverLimit(t, a) = a > limits(t)
 
-DIM type(6), amount(6)
-type(0) = DINNER: amount(0) = 5000
-type(1) = DINNER: amount(1) = 5001
-type(2) = BREAKFAST: amount(2) = 1000
-type(3) = BREAKFAST: amount(3) = 1001
-type(4) = CARRENTAL: amount(4) = 4
-type(5) = LUNCH: amount(5) = 2000
-type(6) = LUNCH: amount(6) = 2001
-CALL PrintExpenses(type(), amount())
-END
+DIM SHARED mealOverExpensesMarker$(1)
+mealOverExpensesMarker$(0) = " "
+mealOverExpensesMarker$(1) = "X"
+DEF FNmealOverExpensesMarker$(t, a) = mealOverExpensesMarker$(-FNisOverLimit(t, a))
+DEF FNdetail$(t, a) = names$(t) + CHR$(9) + STR$(a) + CHR$(9) + FNmealOverExpensesMarker$(t, a)
+
+DEF FNHeader$(n) = "Expenses: " + DATE$
 
 SUB PrintExpenses(type(), amount()) STATIC
     CALL PrintHeader
@@ -27,18 +24,13 @@ SUB PrintExpenses(type(), amount()) STATIC
 END SUB
 
 SUB PrintHeader STATIC
-    PRINT "Expenses: " DATE$
+    PRINT FNHeader$(0)
 END SUB
 
 SUB PrintDetails(type(), amount()) STATIC
     FOR i=LBOUND(type) TO UBOUND(type)
-        CALL PrintDetail(type(i), amount(i))
+        PRINT FNdetail$(type(i), amount(i))
     NEXT i
-END SUB
-
-SUB PrintDetail(t, a) STATIC
-    IF FNisOverLimit(t, a) THEN mealOverExpensesMarker$ = "X" ELSE mealOverExpensesMarker$ = " "
-    PRINT names$(t) CHR$(9) STR$(a) CHR$(9) mealOverExpensesMarker$
 END SUB
 
 SUB PrintSummary(type(), amount()) STATIC
@@ -55,3 +47,14 @@ SUB PrintSummary(type(), amount()) STATIC
     PRINT "Meal Expenses:"  STR$(mealExpenses)
     PRINT "Total Expenses:" STR$(total)
 END SUB
+
+DIM type(6), amount(6)
+type(0) = DINNER: amount(0) = 5000
+type(1) = DINNER: amount(1) = 5001
+type(2) = BREAKFAST: amount(2) = 1000
+type(3) = BREAKFAST: amount(3) = 1001
+type(4) = CARRENTAL: amount(4) = 4
+type(5) = LUNCH: amount(5) = 2000
+type(6) = LUNCH: amount(6) = 2001
+CALL PrintExpenses(type(), amount())
+END
