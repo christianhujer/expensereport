@@ -25,6 +25,7 @@ The ExpenseReport example currently exists in the following languages:
 - [BASIC](expensereport-basic-bywater/) (Bywater BASIC, Linux) (very similar to Commodore BASIC)
 - [BASIC](expensereport-basic-c64/) (Commodore BASIC, Commodore 64)
 - [BASIC](expensereport-basic-locomotive/) (Locomotive BASIC, Amstrad CPC)
+- [BASIC](expensereport-basic-yabasic/) (Yabasic)
 - [C](expensereport-c/)
 - [C#](expensereport-csharp/)
 - [C++](expensereport-cxx/)
