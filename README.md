@@ -77,6 +77,7 @@ The ExpenseReport example currently exists in the following languages:
 - AMOS BASIC
 - APL
 - More Assembler implementations (arm, aarch64, i686, powerpc, powerpc64, mpis, mips64, sparc, sparc64, risc-v, etc, usually on Linux)
+- Carbon
 - CLIPS
 - Cluster
 - Curry
@@ -86,6 +87,7 @@ The ExpenseReport example currently exists in the following languages:
 - Erlang
 - Forth
 - Gosu
+- Hack
 - Hare
 - Java Byte Code / JVM Assembler
 - Lobster
@@ -106,6 +108,10 @@ The ExpenseReport example currently exists in the following languages:
 - False
 - Malbolge
 - Whitespace
+
+## Undecided Languages
+There are many more programming languages than in the list above.
+Find a more complete list on [Wikipedia](https://en.wikipedia.org/wiki/List_of_programming_languages).
 
 ## Other plans
 - Make sure that all languages are providing the identical challenge.
