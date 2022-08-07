@@ -80,11 +80,13 @@ The ExpenseReport example currently exists in the following languages:
 - Carbon
 - CLIPS
 - Cluster
+- Concurnas
 - Curry
 - Dark
 - Eiffel
 - Elm
 - Erlang
+- Flix
 - Forth
 - Gosu
 - Hack
