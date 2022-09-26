@@ -98,7 +98,10 @@ The ExpenseReport example currently exists in the following languages:
 - Modula-2 (once the linker starts working again)
 - Oberon
 - OCaml
+- Pony
+- PureScript
 - R
+- Reason
 - REBOL
 - Scratch
 - SNOBOL
