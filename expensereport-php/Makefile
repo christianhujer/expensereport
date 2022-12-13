@@ -1,3 +1,6 @@
-.PHONY: all
+.PHONY: all tests
 all:
-	php ExpenseReport.php
+	composer install
+
+tests:
+	php vendor/bin/phpunit -c phpunit.xml
