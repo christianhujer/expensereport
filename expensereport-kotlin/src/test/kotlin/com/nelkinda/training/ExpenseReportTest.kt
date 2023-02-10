@@ -35,7 +35,7 @@ class ExpenseReportTest {
         @JvmStatic
         fun inputForExpenseReport(): Stream<Arguments> {
             return Stream.of(
-                Arguments.of(emptyList<Expense>(), "output when there is one breakfast expense costing 100"),
+                Arguments.of(emptyList<Expense>(), "output when are no expenses"),
                 Arguments.of(listOf(Expense(ExpenseType.BREAKFAST, 100)), "output when there is one breakfast expense costing 100"),
                 Arguments.of(listOf(Expense(ExpenseType.DINNER, 100)), "output when there is one dinner expense costing 100"),
                 Arguments.of(listOf(Expense(ExpenseType.CAR_RENTAL, 100)), "output when there is one car rental expense costing 100"),
