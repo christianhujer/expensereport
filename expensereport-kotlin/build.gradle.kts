@@ -1,4 +1,6 @@
+import org.jetbrains.kotlin.cli.jvm.compiler.findMainClass
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 
 plugins {
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
@@ -7,6 +9,7 @@ plugins {
     jacoco
     id("info.solidsoft.pitest") version "1.7.0"
 }
+
 
 group = "com.nelkinda.training"
 version = "0.0.1-SNAPSHOT"
@@ -63,6 +66,7 @@ dependencies {
     testImplementation("org.junit.platform:junit-platform-suite-api")
     testImplementation("org.junit.platform:junit-platform-suite-commons")
     testImplementation("org.junit.platform:junit-platform-suite-engine")
+    testImplementation ("com.github.stefanbirkner:system-lambda:1.2.0")
 }
 
 tasks.withType<KotlinCompile> {
