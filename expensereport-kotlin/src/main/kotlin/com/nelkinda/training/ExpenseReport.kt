@@ -12,12 +12,12 @@ class Expense {
     var amount: Int = 0
 }
 
-class ExpenseReport(private val printStream: PrintStream = System.out) {
+class ExpenseReport(private val printStream: PrintStream = System.out, private val date: Date = Date()) {
     fun printReport(expenses: List<Expense>) {
         var total = 0
         var mealExpenses = 0
 
-        printStream.println("Expenses ${Date()}")
+        printStream.println("Expenses $date")
 
         for (expense in expenses) {
             if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
