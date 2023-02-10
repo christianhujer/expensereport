@@ -4,7 +4,7 @@ import com.nelkinda.training.model.Expense
 import com.nelkinda.training.model.ExpenseType
 import java.util.Date
 
-class ExpenseReport {
+class ExpenseReport{
     fun printReport(expenses: List<Expense>) {
         var total = 0
         var mealExpenses = 0

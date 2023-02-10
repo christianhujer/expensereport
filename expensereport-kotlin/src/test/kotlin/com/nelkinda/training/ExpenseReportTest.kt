@@ -13,13 +13,9 @@ class ExpenseReportTest {
 
     @Test
     fun printReport() {
-        val expense1 = Expense()
-        expense1.amount = 1000
-        expense1.type = BREAKFAST
+        val expense1 = Expense(BREAKFAST, 1000)
 
-        val expense2 = Expense()
-        expense2.amount = 2000
-        expense2.type = DINNER
+        val expense2 = Expense(DINNER, 2000)
 
         val expectedResult = listOf(
             "Expenses ${Date()}", "Breakfast\t1000\t ", "Dinner\t2000\t ",
