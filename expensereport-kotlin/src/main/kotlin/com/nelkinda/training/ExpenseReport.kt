@@ -16,8 +16,7 @@ class ExpenseReport {
                 mealExpenses += expense.amount
             }
 
-            var expenseName = ""
-            expenseName = when (expense.type) {
+            val expenseName: String = when (expense.type) {
                 ExpenseType.DINNER -> "Dinner"
                 ExpenseType.BREAKFAST -> "Breakfast"
                 ExpenseType.CAR_RENTAL -> "Car Rental"
