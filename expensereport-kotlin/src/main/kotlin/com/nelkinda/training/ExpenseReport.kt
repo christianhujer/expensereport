@@ -25,9 +25,9 @@ class ExpenseReport {
 
         for (expense in expenses) {
             var mealOverExpensesMarker = " "
-            if (expense.isExpenseTypeAMeal()) {
+            if (expense.isExpenseTypeAMeal) {
                 mealExpenses += expense.amount
-                mealOverExpensesMarker = expense.flagIfOverLimit()
+                mealOverExpensesMarker = expense.mealExpenseOverLimit
             }
             println(expense.type.stringName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
 
