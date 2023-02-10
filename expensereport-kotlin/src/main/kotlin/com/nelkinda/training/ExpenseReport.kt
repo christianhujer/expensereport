@@ -1,43 +1,39 @@
 package com.nelkinda.training
 
+import com.nelkinda.training.model.Expense
+import com.nelkinda.training.model.ExpenseType
+import com.nelkinda.training.model.ExpenseType.*
 import java.util.Date
-
-enum class ExpenseType {
-    DINNER, BREAKFAST, CAR_RENTAL
-}
-
-class Expense {
-    lateinit var type: ExpenseType
-    var amount: Int = 0
-}
 
 class ExpenseReport {
     fun printReport(expenses: List<Expense>) {
-        var total = 0
-        var mealExpenses = 0
-
         println("Expenses ${Date()}")
 
-        for (expense in expenses) {
-            if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
-                mealExpenses += expense.amount
-            }
-
-            var expenseName = ""
-            when (expense.type) {
-                ExpenseType.DINNER -> expenseName = "Dinner"
-                ExpenseType.BREAKFAST -> expenseName = "Breakfast"
-                ExpenseType.CAR_RENTAL -> expenseName = "Car Rental"
-            }
-
-            val mealOverExpensesMarker = if (expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000) "X" else " "
-
-            println(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
-
-            total += expense.amount
-        }
+        val pair1 = getTotalAndMealExpenses(expenses)
+        val mealExpenses = pair1.first
+        val total = pair1.second
 
         println("Meal expenses: $mealExpenses")
         println("Total expenses: $total")
     }
+
+    fun getTotalAndMealExpenses(
+        expenses: List<Expense>
+    ): Pair<Int, Int> {
+        var mealExpenses = 0
+        var total = 0
+
+        for (expense in expenses) {
+            var mealOverExpensesMarker = " "
+            if (expense.isExpenseTypeAMeal()) {
+                mealExpenses += expense.amount
+                mealOverExpensesMarker = expense.flagIfOverLimit()
+            }
+            println(expense.type.stringName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
+
+            total += expense.amount
+        }
+        return Pair(mealExpenses, total)
+    }
+
 }
