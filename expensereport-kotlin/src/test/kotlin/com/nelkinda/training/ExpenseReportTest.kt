@@ -3,6 +3,7 @@ package com.nelkinda.training
 import com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOut
 import com.nelkinda.training.model.Expense
 import com.nelkinda.training.model.ExpenseType.*
+import com.nelkinda.training.model.FinalExpense
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -18,9 +19,9 @@ class ExpenseReportTest {
     private companion object{
         @JvmStatic
         fun expenseListArguments() = Stream.of(
-            Arguments.of(listOf(Expense(BREAKFAST, 100), Expense(DINNER, 200), Expense(CAR_RENTAL, 200)), Pair(300, 500)),
-            Arguments.of(listOf(Expense(BREAKFAST, 10000), Expense(DINNER, 5000)), Pair(15000, 15000)),
-            Arguments.of(listOf(Expense(LUNCH, 100), Expense(CAR_RENTAL, 200)), Pair(100, 300))
+            Arguments.of(listOf(Expense(BREAKFAST, 100), Expense(DINNER, 200), Expense(CAR_RENTAL, 200)), FinalExpense(300, 500)),
+            Arguments.of(listOf(Expense(BREAKFAST, 10000), Expense(DINNER, 5000)), FinalExpense(15000, 15000)),
+            Arguments.of(listOf(Expense(LUNCH, 100), Expense(CAR_RENTAL, 200)), FinalExpense(100, 300))
         )
     }
 
@@ -109,7 +110,7 @@ class ExpenseReportTest {
 
     @ParameterizedTest
     @MethodSource("expenseListArguments")
-    fun `should test each expense list for meal and total expense`(expenseList: List<Expense>, expectedExpense: Pair<Int, Int>){
+    fun `should test each expense list for meal and total expense`(expenseList: List<Expense>, expectedExpense: FinalExpense){
         val actualExpense = expenseReport.getTotalAndMealExpenses(expenseList)
 
         assertEquals(expectedExpense, actualExpense)
