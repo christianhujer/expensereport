@@ -22,9 +22,9 @@ class ExpenseReport {
     ): Pair<Int, Int> {
         var mealExpenses = 0
         var total = 0
-        var mealOverExpensesMarker = " "
 
         for (expense in expenses) {
+            var mealOverExpensesMarker = " "
             if (expense.isExpenseTypeAMeal(expense.type)) {
                 mealExpenses += expense.amount
                 mealOverExpensesMarker = expense.flagIfOverLimit(expense)
