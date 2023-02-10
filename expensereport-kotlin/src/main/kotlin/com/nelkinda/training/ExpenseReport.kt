@@ -17,7 +17,7 @@ class ExpenseReport {
         println("Total expenses: $total")
     }
 
-    private fun getTotalAndMealExpenses(
+    fun getTotalAndMealExpenses(
         expenses: List<Expense>
     ): Pair<Int, Int> {
         var mealExpenses = 0

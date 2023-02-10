@@ -7,9 +7,21 @@ import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 import java.util.*
+import java.util.stream.Stream
 
 class ExpenseReportTest {
+
+    private companion object{
+        @JvmStatic
+        fun expenseListArguments() = Stream.of(
+            Arguments.of(listOf(Expense(BREAKFAST, 100), Expense(DINNER, 200), Expense(CAR_RENTAL, 200)), Pair<Int, Int>(300, 500)),
+            Arguments.of(listOf(Expense(BREAKFAST, 10000), Expense(DINNER, 5000)), Pair<Int, Int>(15000, 15000))
+        )
+    }
 
     private lateinit var expenseReport: ExpenseReport
     @BeforeEach
@@ -62,5 +74,13 @@ class ExpenseReportTest {
         val actualResult = output.split("\n")
 
         assertEquals(expectedResult, actualResult)
+    }
+
+    @ParameterizedTest
+    @MethodSource("expenseListArguments")
+    fun `should test each expense list for meal and total expense`(expenseList: List<Expense>, expectedExpense: Pair<Int, Int>){
+        val actualExpense = expenseReport.getTotalAndMealExpenses(expenseList)
+
+        assertEquals(expectedExpense, actualExpense)
     }
 }

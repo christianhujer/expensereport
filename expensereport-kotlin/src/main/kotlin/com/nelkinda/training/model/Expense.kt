@@ -12,8 +12,7 @@ class Expense(
     }
 
     fun flagIfOverLimit(expense: Expense): String {
-        if (expense.type == ExpenseType.DINNER && expense.amount > ExpenseType.DINNER.expenseLimit ||
-            expense.type == ExpenseType.BREAKFAST && expense.amount > ExpenseType.BREAKFAST.expenseLimit) {
+        if (isExpenseTypeAMeal(type) && amount > type.expenseLimit) {
             return "X"
         }
         return " "
