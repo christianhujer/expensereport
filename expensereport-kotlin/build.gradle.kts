@@ -63,6 +63,7 @@ dependencies {
     testImplementation("org.junit.platform:junit-platform-suite-api")
     testImplementation("org.junit.platform:junit-platform-suite-commons")
     testImplementation("org.junit.platform:junit-platform-suite-engine")
+    testImplementation("com.approvaltests:approvaltests:18.5.0")
 }
 
 tasks.withType<KotlinCompile> {
