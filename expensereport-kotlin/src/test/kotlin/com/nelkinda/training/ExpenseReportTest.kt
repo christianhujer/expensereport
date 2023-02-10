@@ -18,8 +18,8 @@ class ExpenseReportTest {
     private companion object{
         @JvmStatic
         fun expenseListArguments() = Stream.of(
-            Arguments.of(listOf(Expense(BREAKFAST, 100), Expense(DINNER, 200), Expense(CAR_RENTAL, 200)), Pair<Int, Int>(300, 500)),
-            Arguments.of(listOf(Expense(BREAKFAST, 10000), Expense(DINNER, 5000)), Pair<Int, Int>(15000, 15000))
+            Arguments.of(listOf(Expense(BREAKFAST, 100), Expense(DINNER, 200), Expense(CAR_RENTAL, 200)), Pair(300, 500)),
+            Arguments.of(listOf(Expense(BREAKFAST, 10000), Expense(DINNER, 5000)), Pair(15000, 15000))
         )
     }
 
@@ -52,6 +52,21 @@ class ExpenseReportTest {
         val expectedResult = listOf(
             "Expenses ${Date()}", "Breakfast\t1001\tX",
             "Meal expenses: 1001", "Total expenses: 1001", ""
+        )
+
+        val output = tapSystemOut { expenseReport.printReport(listOf(expense1)) }
+        val actualResult = output.split("\n")
+
+        assertEquals(expectedResult, actualResult)
+    }
+
+    @Test
+    fun `should flag dinner`(){
+        val expense1 = Expense(DINNER, 5001)
+
+        val expectedResult = listOf(
+            "Expenses ${Date()}", "Dinner\t5001\tX",
+            "Meal expenses: 5001", "Total expenses: 5001", ""
         )
 
         val output = tapSystemOut { expenseReport.printReport(listOf(expense1)) }
