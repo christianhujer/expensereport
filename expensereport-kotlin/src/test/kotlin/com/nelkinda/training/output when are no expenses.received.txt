@@ -1,0 +1,3 @@
+output when are no expenses[0] = Expenses Fri Feb 10 11:02:11 IST 2023
+output when are no expenses[1] = Meal expenses: 0
+output when are no expenses[2] = Total expenses: 0

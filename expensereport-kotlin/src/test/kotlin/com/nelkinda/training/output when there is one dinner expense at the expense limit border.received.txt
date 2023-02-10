@@ -1,0 +1,3 @@
+output when there is one dinner expense at the expense limit border[0] = Expenses Fri Feb 10 11:02:11 IST 2023
+output when there is one dinner expense at the expense limit border[1] = Meal expenses: 5000
+output when there is one dinner expense at the expense limit border[2] = Total expenses: 5000

@@ -1,0 +1,3 @@
+output when there are multiple expenses[0] = Expenses Fri Feb 10 11:02:11 IST 2023
+output when there are multiple expenses[1] = Meal expenses: 200
+output when there are multiple expenses[2] = Total expenses: 800

@@ -1,0 +1,3 @@
+output when there is one dinner expense costing 100[0] = Expenses Fri Feb 10 11:02:11 IST 2023
+output when there is one dinner expense costing 100[1] = Meal expenses: 100
+output when there is one dinner expense costing 100[2] = Total expenses: 100
