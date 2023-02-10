@@ -19,7 +19,8 @@ class ExpenseReportTest {
         @JvmStatic
         fun expenseListArguments() = Stream.of(
             Arguments.of(listOf(Expense(BREAKFAST, 100), Expense(DINNER, 200), Expense(CAR_RENTAL, 200)), Pair(300, 500)),
-            Arguments.of(listOf(Expense(BREAKFAST, 10000), Expense(DINNER, 5000)), Pair(15000, 15000))
+            Arguments.of(listOf(Expense(BREAKFAST, 10000), Expense(DINNER, 5000)), Pair(15000, 15000)),
+            Arguments.of(listOf(Expense(LUNCH, 100), Expense(CAR_RENTAL, 200)), Pair(100, 300))
         )
     }
 
@@ -52,6 +53,21 @@ class ExpenseReportTest {
         val expectedResult = listOf(
             "Expenses ${Date()}", "Breakfast\t1001\tX",
             "Meal expenses: 1001", "Total expenses: 1001", ""
+        )
+
+        val output = tapSystemOut { expenseReport.printReport(listOf(expense1)) }
+        val actualResult = output.split("\n")
+
+        assertEquals(expectedResult, actualResult)
+    }
+
+    @Test
+    fun `should flag lunch`() {
+        val expense1 = Expense(LUNCH, 2001)
+
+        val expectedResult = listOf(
+            "Expenses ${Date()}", "Lunch\t2001\tX",
+            "Meal expenses: 2001", "Total expenses: 2001", ""
         )
 
         val output = tapSystemOut { expenseReport.printReport(listOf(expense1)) }
