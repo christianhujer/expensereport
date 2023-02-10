@@ -1,7 +1,7 @@
 package com.nelkinda.training
 
 import java.io.PrintStream
-import java.util.Date
+import java.util.*
 
 enum class ExpenseType {
     DINNER, BREAKFAST, CAR_RENTAL
@@ -12,7 +12,7 @@ class Expense {
     var amount: Int = 0
 }
 
-class ExpenseReport(private val printStream: PrintStream) {
+class ExpenseReport(private val printStream: PrintStream = System.out) {
     fun printReport(expenses: List<Expense>) {
         var total = 0
         var mealExpenses = 0
@@ -31,7 +31,8 @@ class ExpenseReport(private val printStream: PrintStream) {
                 ExpenseType.CAR_RENTAL -> expenseName = "Car Rental"
             }
 
-            val mealOverExpensesMarker = if (expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000) "X" else " "
+            val mealOverExpensesMarker =
+                if (expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000) "X" else " "
 
             println(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
 
