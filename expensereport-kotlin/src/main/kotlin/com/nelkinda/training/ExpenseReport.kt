@@ -1,5 +1,6 @@
 package com.nelkinda.training
 
+import java.io.PrintStream
 import java.util.Date
 
 enum class ExpenseType {
@@ -11,12 +12,12 @@ class Expense {
     var amount: Int = 0
 }
 
-class ExpenseReport {
+class ExpenseReport(private val printStream: PrintStream) {
     fun printReport(expenses: List<Expense>) {
         var total = 0
         var mealExpenses = 0
 
-        println("Expenses ${Date()}")
+        printStream.println("Expenses ${Date()}")
 
         for (expense in expenses) {
             if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
@@ -37,7 +38,7 @@ class ExpenseReport {
             total += expense.amount
         }
 
-        println("Meal expenses: $mealExpenses")
-        println("Total expenses: $total")
+        printStream.println("Meal expenses: $mealExpenses")
+        printStream.println("Total expenses: $total")
     }
 }
