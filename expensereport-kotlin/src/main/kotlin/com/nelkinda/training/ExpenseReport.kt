@@ -2,6 +2,7 @@ package com.nelkinda.training
 
 import com.nelkinda.training.model.Expense
 import com.nelkinda.training.model.ExpenseType
+import com.nelkinda.training.model.ExpenseType.*
 import java.util.Date
 
 class ExpenseReport {
@@ -12,12 +13,12 @@ class ExpenseReport {
         println("Expenses ${Date()}")
 
         for (expense in expenses) {
-            if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
+            var mealOverExpensesMarker = " "
+            if (isExpenseTypeAMeal(expense.type)) {
                 mealExpenses += expense.amount
+                mealOverExpensesMarker = flagIfOverLimit(expense)
             }
 
-            val mealOverExpensesMarker =
-                if (expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000) "X" else " "
 
             println(expense.type.stringName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
 
@@ -26,5 +27,19 @@ class ExpenseReport {
 
         println("Meal expenses: $mealExpenses")
         println("Total expenses: $total")
+    }
+
+    private fun flagIfOverLimit(expense: Expense): String {
+        if (expense.type == DINNER && expense.amount > DINNER.expenseLimit || expense.type == BREAKFAST && expense.amount > BREAKFAST.expenseLimit) {
+            return "X"
+        }
+        return " "
+    }
+
+    private fun isExpenseTypeAMeal(expenseType: ExpenseType): Boolean {
+        if (expenseType == CAR_RENTAL) {
+            return false
+        }
+        return true
     }
 }
