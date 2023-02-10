@@ -3,15 +3,6 @@ package com.nelkinda.training
 import java.io.PrintStream
 import java.util.*
 
-enum class ExpenseType {
-    DINNER, BREAKFAST, CAR_RENTAL
-}
-
-class Expense {
-    lateinit var type: ExpenseType
-    var amount: Int = 0
-}
-
 class ExpenseReport(private val printStream: PrintStream = System.out, private val date: Date = Date()) {
     fun printReport(expenses: List<Expense>) {
         var total = 0
