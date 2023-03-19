@@ -1,4 +1,5 @@
 # ExpenseReport
+![License: CC-BY-SA](by-sa.svg)
 The ExpenseReport legacy code refactoring kata in various languages.
 
 This is an example of a piece of legacy code with lots of code smells.
@@ -131,9 +132,18 @@ To see solutions, switch to the [solutions branch](https://github.com/christianh
 
 **Warning** The solutions branch will be rebased!
 
-## Credits
+## Credits and License
 I first encountered the ExpenseReport example during a bootcamp at Equal Experts.
 I also have seen the ExpenseReport example being used by Robert "Uncle Bob" C. Martin.
 However, he seems to not be the original author (https://twitter.com/unclebobmartin/status/1537063143326855176?s=20&t=lh_vVb9jUQmY6PYG50974w)
 I have tried to research its origins but so far I have failed.
 If you know who has first come up with this example, please get in touch with me.
+
+As I was asked for the license conditions, I have decided to put this under CC-BY-SA, with the following considerations:
+- Please credit me, last but not least to retain the opportunity for people to experience this exercise in as many programming languages as they are interested in.
+- Share it under the same license.
+- Using this as training material should be allowed, even if the trainer is charging money for their time.
+
+Disclaimer: As stated above, I did not come up with the original version.
+The original author is unknown to me.
+The CC-BY-SA license thus can only cover my contribution: Recreating the Java version from memory, creating the versions in other programming languages than Java, and keeping them consistent.
