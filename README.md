@@ -89,6 +89,7 @@ The ExpenseReport example currently exists in the following languages:
 - Erlang
 - Flix
 - Forth
+- Gleam
 - Gosu
 - Hack
 - Hare
