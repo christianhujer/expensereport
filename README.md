@@ -107,6 +107,7 @@ The ExpenseReport example currently exists in the following languages:
 - REBOL
 - Scratch
 - SNOBOL
+- Solidity (maybe)
 - TeX
 - Unison
 - WebAssembly
