@@ -98,6 +98,7 @@ The ExpenseReport example currently exists in the following languages:
 - Logo
 - Mercury
 - Modula-2 (once the linker starts working again)
+- Mojo
 - Oberon
 - OCaml
 - Pony
