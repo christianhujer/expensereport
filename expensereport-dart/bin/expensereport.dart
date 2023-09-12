@@ -1,4 +1,4 @@
-import 'package:expensereport/expensereport.dart';
+import '../lib/expensereport.dart';
 
 void main(List<String> arguments) {
   var expenseReport = ExpenseReport();
