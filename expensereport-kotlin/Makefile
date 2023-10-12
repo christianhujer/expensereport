@@ -1,8 +1,8 @@
 .PHONY: all
 all: build
 
-.PHONY: build clean pitest
-build clean pitest:
+.PHONY: build clean test pitest
+build clean test pitest:
 	./gradlew $@
 
 -include .User.mk
