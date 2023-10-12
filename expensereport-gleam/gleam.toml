@@ -1,0 +1,2 @@
+name = "expense_report"
+dependencies = { gleam_stdlib = "~> 0.30" , birl = "~> 0.14"}
