@@ -33,7 +33,8 @@ function printReport(expenses: Expense[]): void {
   printReportOn(new Date().toISOString(), expenses)
 }
 
-function printReportOn(date: string, expenses: Expense[]) {
+
+function printReportOn(date: string, expenses: Expense[]): void {
   process.stdout.write('Expenses: ' + date + '\n')
 
   let totalExpenses: number = 0
@@ -41,24 +42,12 @@ function printReportOn(date: string, expenses: Expense[]) {
 
 
   for (const expense of expenses) {
-    if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
+    if (isMeal(expense)) {
       mealExpenses += expense.amount
     }
+    let expenseName = getName(expense)
 
-    let expenseName = ''
-    switch (expense.type) {
-      case ExpenseType.DINNER:
-        expenseName = 'Dinner'
-        break
-      case ExpenseType.BREAKFAST:
-        expenseName = 'Breakfast'
-        break
-      case ExpenseType.CAR_RENTAL:
-        expenseName = 'Car Rental'
-        break
-    }
-
-    let mealOverExpensesMarker = expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000 ? 'X' : ' '
+    let mealOverExpensesMarker = isOverLimit(expense) ? 'X' : ' '
 
     process.stdout.write(expenseName + '\t' + expense.amount + '\t' + mealOverExpensesMarker + '\n')
 
@@ -67,6 +56,30 @@ function printReportOn(date: string, expenses: Expense[]) {
 
   process.stdout.write('Meal Expenses: ' + mealExpenses + '\n')
   process.stdout.write('Total Expenses: ' + totalExpenses + '\n')
+}
+
+function isMeal(expense: Expense): boolean {
+  return expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST
+}
+
+function getName(expense: Expense): string {
+  let expenseName = ''
+  switch (expense.type) {
+    case ExpenseType.DINNER:
+      expenseName = 'Dinner'
+      break
+    case ExpenseType.BREAKFAST:
+      expenseName = 'Breakfast'
+      break
+    case ExpenseType.CAR_RENTAL:
+      expenseName = 'Car Rental'
+      break
+  }
+  return expenseName
+}
+
+function isOverLimit(expense: Expense): boolean {
+  return expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000
 }
 
 export { sumTwoValues, printHelloWorld, printReport, Expense, ExpenseType }
