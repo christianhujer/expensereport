@@ -47,6 +47,11 @@ class Expense {
     }
     return expenseName
   }
+
+  isOverLimit(): boolean {
+    return this.type == ExpenseType.DINNER && this.amount > 5000 || this.type == ExpenseType.BREAKFAST && this.amount > 1000
+  }
+
 }
 
 function printReport(expenses: Expense[]): void {
@@ -66,7 +71,7 @@ function printReportOn(date: string, expenses: Expense[]): void {
     }
     let expenseName = expense.getName()
 
-    let mealOverExpensesMarker = isOverLimit(expense) ? 'X' : ' '
+    let mealOverExpensesMarker = expense.isOverLimit() ? 'X' : ' '
 
     process.stdout.write(expenseName + '\t' + expense.amount + '\t' + mealOverExpensesMarker + '\n')
 
@@ -77,9 +82,5 @@ function printReportOn(date: string, expenses: Expense[]): void {
   process.stdout.write('Total Expenses: ' + totalExpenses + '\n')
 }
 
-
-function isOverLimit(expense: Expense): boolean {
-  return expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000
-}
 
 export { sumTwoValues, printHelloWorld, printReport, Expense, ExpenseType }
