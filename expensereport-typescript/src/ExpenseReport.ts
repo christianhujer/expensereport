@@ -29,6 +29,10 @@ class Expense {
   }
 }
 
+function printReport(expenses: Expense[]): void {
+  printReportOn(new Date().toISOString(), expenses)
+}
+
 function printReportOn(date: string, expenses: Expense[]) {
   process.stdout.write('Expenses: ' + date + '\n')
 
@@ -63,10 +67,6 @@ function printReportOn(date: string, expenses: Expense[]) {
 
   process.stdout.write('Meal Expenses: ' + mealExpenses + '\n')
   process.stdout.write('Total Expenses: ' + totalExpenses + '\n')
-}
-
-function printReport(expenses: Expense[]): void {
-  printReportOn(new Date().toISOString(), expenses)
 }
 
 export { sumTwoValues, printHelloWorld, printReport, Expense, ExpenseType }
