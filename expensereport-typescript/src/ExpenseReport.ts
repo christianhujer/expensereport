@@ -51,16 +51,25 @@ function printReport(expenses: Expense[]): void {
   printReportOn(new Date().toISOString(), expenses)
 }
 
-
 function printReportOn(date: string, expenses: Expense[]): void {
-  process.stdout.write('Expenses: ' + date + '\n')
-
-  let mealExpenses = sumMeal(expenses)
+  printHeader(date)
   printDetails(expenses)
-  let totalExpenses = sumTotal(expenses)
+  printSummary(expenses)
+}
 
-  process.stdout.write('Meal Expenses: ' + mealExpenses + '\n')
-  process.stdout.write('Total Expenses: ' + totalExpenses + '\n')
+function printHeader(date: string) {
+  process.stdout.write('Expenses: ' + date + '\n')
+}
+
+function printDetails(expenses: Expense[]) {
+  for (const expense of expenses) {
+    process.stdout.write(expense.getName() + '\t' + expense.amount + '\t' + (expense.isOverLimit() ? 'X' : ' ') + '\n')
+  }
+}
+
+function printSummary(expenses: Expense[]) {
+  process.stdout.write('Meal Expenses: ' + sumMeal(expenses) + '\n')
+  process.stdout.write('Total Expenses: ' + sumTotal(expenses) + '\n')
 }
 
 function sumMeal(expenses: Expense[]) {
@@ -72,13 +81,6 @@ function sumMeal(expenses: Expense[]) {
   }
   return mealExpenses
 }
-
-function printDetails(expenses: Expense[]) {
-  for (const expense of expenses) {
-    process.stdout.write(expense.getName() + '\t' + expense.amount + '\t' + (expense.isOverLimit() ? 'X' : ' ') + '\n')
-  }
-}
-
 
 function sumTotal(expenses: Expense[]) {
   let totalExpenses: number = 0
