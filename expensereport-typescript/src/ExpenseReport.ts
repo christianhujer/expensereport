@@ -31,6 +31,22 @@ class Expense {
   isMeal(): boolean {
     return this.type == ExpenseType.DINNER || this.type == ExpenseType.BREAKFAST
   }
+
+  getName(): string {
+    let expenseName = ''
+    switch (this.type) {
+      case ExpenseType.DINNER:
+        expenseName = 'Dinner'
+        break
+      case ExpenseType.BREAKFAST:
+        expenseName = 'Breakfast'
+        break
+      case ExpenseType.CAR_RENTAL:
+        expenseName = 'Car Rental'
+        break
+    }
+    return expenseName
+  }
 }
 
 function printReport(expenses: Expense[]): void {
@@ -48,7 +64,7 @@ function printReportOn(date: string, expenses: Expense[]): void {
     if (expense.isMeal()) {
       mealExpenses += expense.amount
     }
-    let expenseName = getName(expense)
+    let expenseName = expense.getName()
 
     let mealOverExpensesMarker = isOverLimit(expense) ? 'X' : ' '
 
@@ -61,22 +77,6 @@ function printReportOn(date: string, expenses: Expense[]): void {
   process.stdout.write('Total Expenses: ' + totalExpenses + '\n')
 }
 
-
-function getName(expense: Expense): string {
-  let expenseName = ''
-  switch (expense.type) {
-    case ExpenseType.DINNER:
-      expenseName = 'Dinner'
-      break
-    case ExpenseType.BREAKFAST:
-      expenseName = 'Breakfast'
-      break
-    case ExpenseType.CAR_RENTAL:
-      expenseName = 'Car Rental'
-      break
-  }
-  return expenseName
-}
 
 function isOverLimit(expense: Expense): boolean {
   return expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000
