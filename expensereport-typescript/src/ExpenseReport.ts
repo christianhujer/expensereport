@@ -75,11 +75,7 @@ function sumMeal(expenses: Expense[]) {
 
 function printDetails(expenses: Expense[]) {
   for (const expense of expenses) {
-    let expenseName = expense.getName()
-
-    let mealOverExpensesMarker = expense.isOverLimit() ? 'X' : ' '
-
-    process.stdout.write(expenseName + '\t' + expense.amount + '\t' + mealOverExpensesMarker + '\n')
+    process.stdout.write(expense.getName() + '\t' + expense.amount + '\t' + (expense.isOverLimit() ? 'X' : ' ') + '\n')
   }
 }
 
