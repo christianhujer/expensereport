@@ -27,12 +27,15 @@ class Expense {
     this.type = type
     this.amount = amount
   }
+
+  isMeal(): boolean {
+    return this.type == ExpenseType.DINNER || this.type == ExpenseType.BREAKFAST
+  }
 }
 
 function printReport(expenses: Expense[]): void {
   printReportOn(new Date().toISOString(), expenses)
 }
-
 
 function printReportOn(date: string, expenses: Expense[]): void {
   process.stdout.write('Expenses: ' + date + '\n')
@@ -42,7 +45,7 @@ function printReportOn(date: string, expenses: Expense[]): void {
 
 
   for (const expense of expenses) {
-    if (isMeal(expense)) {
+    if (expense.isMeal()) {
       mealExpenses += expense.amount
     }
     let expenseName = getName(expense)
@@ -58,9 +61,6 @@ function printReportOn(date: string, expenses: Expense[]): void {
   process.stdout.write('Total Expenses: ' + totalExpenses + '\n')
 }
 
-function isMeal(expense: Expense): boolean {
-  return expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST
-}
 
 function getName(expense: Expense): string {
   let expenseName = ''
