@@ -1,0 +1,9 @@
+<expenses>
+    <expense type="DINNER" amount="5000"/>
+    <expense type="DINNER" amount="5001"/>
+    <expense type="BREAKFAST" amount="1000"/>
+    <expense type="BREAKFAST" amount="1001"/>
+    <expense type="CAR_RENTAL" amount="4"/>
+    <expense type="LUNCH" amount="2000"/>
+    <expense type="LUNCH" amount="2001"/>
+</expenses>

@@ -1,43 +1,68 @@
 import locale
-from enum import Enum, unique, auto
+import sys
 from datetime import datetime
-from typing import List
+from dataclasses import dataclass
 
 
-@unique
-class ExpenseType(Enum):
-    DINNER = auto()
-    BREAKFAST = auto()
-    CAR_RENTAL = auto()
+@dataclass(frozen=True)
+class ExpenseType:
+    name: str
+    limit: int
+    is_meal: bool
 
 
+# pylint: disable=too-few-public-methods
+class ExpenseTypes:
+    DINNER = ExpenseType("Dinner", 5000, True)
+    BREAKFAST = ExpenseType("Breakfast", 1000, True)
+    CAR_RENTAL = ExpenseType("Car Rental", sys.maxsize, False)
+    LUNCH = ExpenseType("Lunch", 2000, True)
+
+    @classmethod
+    def value_of(cls, name: str):
+        return getattr(cls, name)
+
+
+@dataclass(frozen=True)
 class Expense:
-    type: ExpenseType
+    expenseType: ExpenseType
     amount: int
+
+    def name(self):
+        return self.expenseType.name
+
+    def is_meal(self):
+        return self.expenseType.is_meal
+
+    def is_over_limit(self):
+        return self.amount > self.expenseType.limit
 
 
 class ExpenseReport:
-    def print_report(self, expenses: List[Expense]):
-        total = 0
-        meals = 0
+    def print_report(self, expenses: list[Expense], timestamp=datetime.now()):
+        print(self.generate_report(expenses, timestamp), end="")
 
-        print("Expense Report", datetime.now().strftime(locale.nl_langinfo(locale.D_T_FMT)))
+    def generate_report(self, expenses: list[Expense], timestamp=datetime.now()):
+        return self.header(timestamp) + self.body(expenses) + self.summary(expenses)
 
-        for expense in expenses:
-            if expense.type == ExpenseType.DINNER or expense.type == ExpenseType.BREAKFAST:
-                meals += expense.amount
+    def header(self, timestamp):
+        return f"Expenses {timestamp.strftime(locale.nl_langinfo(locale.D_T_FMT))}\n"
 
-            name = ""
-            if expense.type == ExpenseType.DINNER:
-                name = "Dinner"
-            elif expense.type == ExpenseType.BREAKFAST:
-                name = "Breakfast"
-            elif expense.type == ExpenseType.CAR_RENTAL:
-                name = "Car Rental"
+    def body(self, expenses: list[Expense]):
+        return "".join(map(self.detail, expenses))
 
-            meal_over_expenses_marker = "X" if expense.type == ExpenseType.DINNER and expense.amount > 5000 or expense.type == ExpenseType.BREAKFAST and expense.amount > 1000 else " "
-            print(name, "\t", expense.amount, "\t", meal_over_expenses_marker)
-            total += expense.amount
+    def detail(self, expense: Expense):
+        over_limit_marker = "X" if expense.is_over_limit() else " "
+        return f"{expense.name()}\t{expense.amount}\t{over_limit_marker}\n"
 
-        print("Meals:", meals)
-        print("Total:", total)
+    def summary(self, expenses: list[Expense]):
+        return (
+            f"Meal expenses: {self.sum_meals(expenses)}\n"
+            f"Total expenses: {self.sum_total(expenses)}\n"
+        )
+
+    def sum_total(self, expenses: list[Expense]):
+        return sum(map(lambda e: e.amount, expenses))
+
+    def sum_meals(self, expenses: list[Expense]):
+        return sum(map(lambda e: e.amount, filter(Expense.is_meal, expenses)))

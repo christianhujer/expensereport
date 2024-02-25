@@ -2,56 +2,108 @@ with Text_IO, Text_IO.Unbounded_IO, Ada.Command_Line, Ada.Strings.Unbounded, Ada
 use Text_IO, Text_IO.Unbounded_IO, Ada.Command_Line, Ada.Strings.Unbounded;
 
 procedure expensereport is
-    type ExpenseType is (Breakfast, Dinner, CarRental);
+    type ExpenseType is tagged record
+        name: Unbounded_String;
+        limit: Integer;
+        isMeal: Boolean;
+    end record;
 
     type Expense is tagged record
         eType: ExpenseType;
         amount: Integer;
     end record;
 
+    Dinner:    constant ExpenseType := (To_Unbounded_String("Dinner"),     5000, true);
+    Breakfast: constant ExpenseType := (To_Unbounded_String("Breakfast"),  1000, true);
+    CarRental: constant ExpenseType := (To_Unbounded_String("Car Rental"), 2147483647, false);
+    Lunch:     constant ExpenseType := (To_Unbounded_String("Lunch"),      2000, true);
+
     type ExpenseList is array(Positive range <>) of Expense;
 
-    procedure printReport(expenses: in ExpenseList) is
-        total : Integer := 0;
-        mealExpenses : Integer := 0;
-        expenseName : Unbounded_String;
-        mealOverExpensesMarker : Character := ' ';
+    function isMeal(exp: Expense) return Boolean is
     begin
-        Put_Line("Expenses:");
+        return exp.eType.isMeal;
+    end;
 
+    function getName(exp: Expense) return Unbounded_String is
+    begin
+        return exp.eType.name;
+    end;
+
+    function isOverLimit(exp: Expense) return Boolean is
+    begin
+        return exp.amount > exp.eType.limit;
+    end;
+
+    function sumMeals(expenses: in ExpenseList) return Integer is
+        meals : Integer := 0;
+    begin
+        meals := 0;
         for i in expenses'Range loop
-            if (expenses(i).eType = Breakfast or expenses(i).eType = Dinner) then
-                mealExpenses := mealExpenses + expenses(i).amount;
+            if (isMeal(expenses(i))) then
+                meals := meals + expenses(i).amount;
             end if;
+        end loop;
+        return meals;
+    end;
 
-            expenseName := To_Unbounded_String("Foo" & "Foo");
-            case expenses(i).eType is
-                when Breakfast =>
-                    expenseName := To_Unbounded_String("Breakfast");
-                when Dinner =>
-                    expenseName := To_Unbounded_String("Dinner");
-                when CarRental =>
-                    expenseName := To_Unbounded_String("Car Rental");
-            end case;
-
-            if ((expenses(i).eType = Breakfast and expenses(i).amount > 1000) or (expenses(i).eType = Dinner and expenses(i).amount > 5000)) then
-                mealOverExpensesMarker := 'X';
-            else
-                mealOverExpensesMarker := ' ';
-            end if;
-
-            Put_Line(expenseName & Ada.Characters.Latin_1.HT & Ada.Strings.Fixed.Trim(Integer'Image(expenses(i).amount), Ada.Strings.Left) & Ada.Characters.Latin_1.HT & mealOverExpensesMarker);
-
+    function sumTotal(expenses: in ExpenseList) return Integer is
+        total : Integer := 0;
+    begin
+        total := 0;
+        for i in expenses'Range loop
             total := total + expenses(i).amount;
         end loop;
+        return total;
+    end;
 
-        Put_Line("Meal expenses:" & Integer'Image(mealExpenses));
-        Put_Line("Total expenses:" & Integer'Image(total));
+    procedure printHeader is
+    begin
+        Put_Line("Expenses:");
+    end printHeader;
+
+    function overLimitMarker(exp: Expense) return Character is
+    begin
+        if (isOverLimit(exp)) then
+            return 'X';
+        else
+            return ' ';
+        end if;
+    end;
+
+    procedure printDetail(exp: Expense) is
+    begin
+        Put_Line(getName(exp) & Ada.Characters.Latin_1.HT & Ada.Strings.Fixed.Trim(Integer'Image(exp.amount), Ada.Strings.Left) & Ada.Characters.Latin_1.HT & overLimitMarker(exp));
+    end printDetail;
+
+    procedure printDetails(expenses: in ExpenseList) is
+    begin
+        for i in expenses'Range loop
+            printDetail(expenses(i));
+        end loop;
+    end printDetails;
+
+    procedure printSummary(expenses: in ExpenseList) is
+    begin
+        Put_Line("Meal expenses:" & Integer'Image(sumMeals(expenses)));
+        Put_Line("Total expenses:" & Integer'Image(sumTotal(expenses)));
+    end printSummary;
+
+    procedure printReport(expenses: in ExpenseList) is
+    begin
+        printHeader;
+        printDetails(expenses);
+        printSummary(expenses);
     end printReport;
 
     expenses : ExpenseList := (
-        (Breakfast, 1),
-        (Breakfast, 1)
+        (Dinner, 5000),
+        (Dinner, 5001),
+        (Breakfast, 1000),
+        (Breakfast, 1001),
+        (CarRental, 4),
+        (Lunch, 2000),
+        (Lunch, 2001)
     );
 begin
     printReport(expenses);

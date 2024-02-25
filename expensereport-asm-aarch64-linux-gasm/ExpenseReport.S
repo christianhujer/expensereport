@@ -3,9 +3,21 @@
 .equ    write,  64
 .equ    exit,   93
 
-.equ    DINNER, 1
-.equ    BREAKFAST,  2
-.equ    CAR_RENTAL, 3
+.macro push reg
+    str     \reg, [sp, #-16]!
+.endm
+
+.macro pop reg
+    ldr     \reg, [sp], #16
+.endm
+
+.macro pushp reg1 reg2
+    stp     \reg1, \reg2, [sp, #-16]!
+.endm
+
+.macro popp reg1 reg2
+    ldp     \reg1, \reg2, [sp], #16
+.endm
 
 .text
     .global _start
@@ -19,155 +31,174 @@ _start:
     svc     #0
 
 printReport:
-    str     x30, [sp,#16]!
-    mov     x9, x0              // x9 = current expese pointer
-    mov     x12, xzr            // x12 = meal expenses
-    mov     x13, xzr            // x13 = total expenses
+    pushp   x29, lr
 
-    mov     x0, #STDOUT
-    ldr     x1, =header
-    mov     x2, #headerLen
-    mov     x8, #write
-    svc     #0
+    mov     x29, x0
+    bl      printHeader
 
+    mov     x0, x29
+    bl      printDetails
+
+    mov     x0, x29
+    bl      printSummary
+
+    popp    x29, lr
+    ret
+
+printHeader:
+    ldr     x0, =header
+    b       print
+
+printDetails:
+    pushp   x29, lr
+    mov     x29, x0
 .loop:
-    ldr     x10, [x9], #8       // x10 = expense type
-    cmp     xzr, x10
-    beq     .loopDone
-    ldr     x11, [x9], #8       // x11 = expense amount
+    ldr     x0, [x29]
+    cbz     x0, .loopDone
 
-    cmp     x10, #DINNER
-    beq     .mealExpense
-    cmp     x10, #BREAKFAST
-    beq     .mealExpense
-    b       .notMeal
-.mealExpense:
-    add     x12, x12, x11
-.notMeal:
+    mov     x0, x29
+    bl      printDetail
 
-.printExpenseName:
-    mov     x0, #STDOUT
-    ldr     x1, =expenseNames
-    ldr     x1, [x1, x10, LSL#3]
-    ldr     x2, =expenseNameLengths
-    ldr     x2, [x2, x10, LSL#3]
-    mov     x8, #write
-    svc     #0
-
-    mov     x0, #STDOUT
-    ldr     x1, =tab
-    mov     x2, #tabLen
-    mov     x8, #write
-    svc     #0
-
-    ldr     x0, =buffer
-    mov     x1, x11
-    bl      itoa10
-    mov     x1, x0
-.lenLoop:
-    ldrb    w2, [x0], 1
-    cbnz    w2, .lenLoop
-    sub     x2, x0, x1
-    sub     x2, x2, #1
-    mov     x0, #STDOUT
-    mov     x8, #write
-    svc     #0
-
-    mov     x0, #STDOUT
-    ldr     x1, =tab
-    mov     x2, #tabLen
-    mov     x8, #write
-    svc     #0
-
-    cmp     x10, DINNER
-    cset    x1, eq
-    mov     x0, 5000
-    cmp     x11, x0
-    cset    x2, gt
-    ands    x3, x2, x1
-    bne     .mealOverExpense
-    cmp     x10, BREAKFAST
-    cset    x1, eq
-    mov     x0, 1000
-    cmp     x11, x0
-    cset    x2, gt
-    ands    x3, x2, x1
-    bne     .mealOverExpense
-.mealNotOverExpense:
-    ldr     x1, =mealNotOverExpensesMarker
-    b       .printMealOverExpensesMarker
-.mealOverExpense:
-    ldr     x1, =mealOverExpensesMarker
-    b       .printMealOverExpensesMarker
-.printMealOverExpensesMarker:
-    mov     x2, #1
-    mov     x0, #STDOUT
-    mov     x8, #write
-    svc     #0
-
-    mov     x0, #STDOUT
-    ldr     x1, =newline
-    mov     x2, #newlineLen
-    mov     x8, #write
-    svc     #0
-
-    add     x13, x13, x11
+    add     x29, x29, #16
     b       .loop
 
 .loopDone:
-
-    mov     x0, #STDOUT
-    ldr     x1, =meals
-    mov     x2, #mealsLen
-    mov     x8, #write
-    svc     #0
-
-    ldr     x0, =buffer
-    mov     x1, x12
-    bl      itoa10
-    mov     x1, x0
-.lenLoop2:
-    ldrb    w2, [x0], 1
-    cbnz    w2, .lenLoop2
-    sub     x2, x0, x1
-    sub     x2, x2, #1
-    mov     x0, #STDOUT
-    mov     x8, #write
-    svc     #0
-
-    mov     x0, #STDOUT
-    ldr     x1, =newline
-    mov     x2, #newlineLen
-    mov     x8, #write
-    svc     #0
-
-    mov     x0, #STDOUT
-    ldr     x1, =total
-    mov     x2, #totalLen
-    mov     x8, #write
-    svc     #0
-
-    ldr     x0, =buffer
-    mov     x1, x13
-    bl      itoa10
-    mov     x1, x0
-.lenLoop3:
-    ldrb    w2, [x0], 1
-    cbnz    w2, .lenLoop3
-    sub     x2, x0, x1
-    sub     x2, x2, #1
-    mov     x0, #STDOUT
-    mov     x8, #write
-    svc     #0
-
-    mov     x0, #STDOUT
-    ldr     x1, =newline
-    mov     x2, #newlineLen
-    mov     x8, #write
-    svc     #0
-
-    ldr     x30, [sp], #16
+    popp    x29, lr
     ret
+
+printDetail:
+    pushp   x29, lr
+    mov     x29, x0
+
+    bl      Expense_getName
+    bl      print
+
+    bl      printTab
+
+    mov     x0, x29
+    bl      Expense_getAmount
+    bl      printN
+
+    bl      printTab
+
+    mov     x0, x29
+    bl      Expense_getOverLimitMarker
+    bl      print
+
+    bl      printNL
+
+    popp    x29, lr
+    ret
+
+Expense_getOverLimitMarker:
+    push    lr
+
+    bl      Expense_isOverLimit
+    cbnz    x0, .overLimitMarker
+.notOverLimitMarker:
+    ldr     x0, =mealNotOverExpensesMarker
+    b       .markerDone
+.overLimitMarker:
+    ldr     x0, =mealOverExpensesMarker
+    b       .markerDone
+.markerDone:
+
+    pop     lr
+    ret
+
+printSummary:
+    pushp   x29, lr
+    mov     x29, x0
+
+    ldr     x0, =meals
+    bl      print
+    mov     x0, x29
+    bl      sumMeals
+    bl      printN
+    bl      printNL
+
+    ldr     x0, =total
+    bl      print
+    mov     x0, x29
+    bl      sumTotal
+    bl      printN
+    bl      printNL
+
+    popp    x29, lr
+    ret
+
+sumMeals:
+    push    lr
+    mov     x3, x0
+    mov     x2, xzr
+.sumMealsLoop:
+    mov     x0, x3
+    bl      Expense_getType
+    cbz     x0, .sumMealsLoopDone
+    mov     x0, x3
+    bl      Expense_isMeal
+    cbz     x0, .notMeal
+    mov     x0, x3
+    bl      Expense_getAmount
+    add     x2, x2, x0
+.notMeal:
+    add     x3, x3, #16
+    b       .sumMealsLoop
+.sumMealsLoopDone:
+    pop     lr
+    mov     x0, x2
+    ret
+
+sumTotal:
+    push    lr
+    mov     x1, x0
+    mov     x2, xzr
+.sumTotalLoop:
+    mov     x0, x1
+    bl      Expense_getType
+    cbz     x0, .sumTotalLoopDone
+    mov     x0, x1
+    bl      Expense_getAmount
+    add     x2, x2, x0
+    add     x1, x1, #16
+    b       .sumTotalLoop
+.sumTotalLoopDone:
+    pop     lr
+    mov     x0, x2
+    ret
+
+printNL:
+    ldr     x0, =newline
+    b       print
+
+printTab:
+    ldr     x0, =tab
+    b       print
+
+// Writes a number to STDOUT.
+// @param x0 Number to write
+printN:
+    push    lr
+    mov     x1, x0
+    ldr     x0, =buffer
+    bl      itoa10
+    pop     lr
+    b       print
+
+// Writes a string to STDOUT.
+// @param x0 String to write
+print:
+    mov     x1, x0
+.loopX:
+    ldrb    w2, [x0], 1
+    cbnz    w2, .loopX
+    sub     x2, x0, x1
+    sub     x2, x2, #1
+    mov     x0, #STDOUT
+    mov     x8, #write
+    svc     #0
+    ret
+
 
 // Converts a number into a decimal string.
 // @param x0 buffer in which to convert the number.
@@ -184,8 +215,7 @@ itoa10:
     add     x4, x4, x5
     strb    w4, [x0], #1
     mov     x1, x3
-    cmp     x1, xzr
-    bne     .itoa10_loop
+    cbnz    x1, .itoa10_loop
     strb    wzr, [x0], #-1
 
     mov     x1, x6
@@ -202,54 +232,92 @@ itoa10:
     mov     x0,x6
     ret
 
+Expense_getName:
+    ldr     x0, [x0]
+    ldr     x0, [x0]
+    ret
+
+Expense_getType:
+    ldr     x0, [x0]
+    ret
+
+Expense_getAmount:
+    ldr     x0, [x0, #8]
+    ret
+
+Expense_isMeal:
+    push    lr
+    bl      Expense_getType
+    ldr     x0, [x0, #16]
+    pop     lr
+    ret
+
+Expense_isOverLimit:
+    push    lr
+    mov     x3, x0
+    bl      Expense_getType
+    ldr     x2, [x0, #8]
+    mov     x0, x3
+    bl      Expense_getAmount
+    cmp     x0, x2
+    cset    x0, hi
+    pop     lr
+    ret
+
 .data
 header:
-    .ascii  "Expense Report\n"
-    headerLen = . - header
+    .asciz  "Expense Report\n"
 meals:
-    .ascii  "Meal Expenses: "
-    mealsLen = . - meals
+    .asciz  "Meal Expenses: "
 total:
-    .ascii  "Total Expenses: "
-    totalLen = . - total
+    .asciz  "Total Expenses: "
 tab:
-    .ascii  "\t"
-    tabLen = . - tab
+    .asciz  "\t"
 newline:
-    .ascii "\n"
-    newlineLen = . - newline
+    .asciz "\n"
 mealOverExpensesMarker:
-    .ascii  "X"
+    .asciz  "X"
 mealNotOverExpensesMarker:
-    .ascii  " "
+    .asciz  " "
+
+dinnerName:
+    .asciz  "Dinner"
+breakfastName:
+    .asciz  "Breakfast"
+carRentalName:
+    .asciz  "Car Rental"
+lunchName:
+    .asciz  "Lunch"
 
 dinner:
-    .ascii  "Dinner"
-    dinnerLen = . - dinner
+    .quad   dinnerName
+    .quad   5000
+    .quad   1
+
 breakfast:
-    .ascii  "Breakfast"
-    breakfastLen = . - breakfast
+    .quad   breakfastName
+    .quad   1000
+    .quad   1
+
 carRental:
-    .ascii  "Car Rental"
-    carRentalLen = . - carRental
-
-expenseNames:
+    .quad   carRentalName
+    .quad   18446744073709551615
     .quad   0
-    .quad   dinner
-    .quad   breakfast
-    .quad   carRental
-expenseNameLengths:
-    .quad   0
-    .quad   dinnerLen
-    .quad   breakfastLen
-    .quad   carRentalLen
 
+lunch:
+    .quad   lunchName
+    .quad   2000
+    .quad   1
+
+.data
 expenses:
-    .quad   DINNER, 5000
-    .quad   DINNER, 5001
-    .quad   BREAKFAST, 1000
-    .quad   BREAKFAST, 1001
-    .quad   CAR_RENTAL, 4
+    .quad   dinner, 5000
+    .quad   dinner, 5001
+    .quad   breakfast, 1000
+    .quad   breakfast, 1001
+    .quad   carRental, 4
+    .quad   lunch, 2000
+    .quad   lunch, 2001
     .quad   0, 0
 
 .bss
