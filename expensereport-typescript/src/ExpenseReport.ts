@@ -29,11 +29,11 @@ class Expense {
   }
 }
 
-function printReport(expenses: Expense[]) {
+function printReportOn(date: string, expenses: Expense[]) {
+  process.stdout.write('Expenses: ' + date + '\n')
+
   let totalExpenses: number = 0
   let mealExpenses: number = 0
-
-  process.stdout.write('Expenses: ' + new Date().toISOString() + '\n')
 
 
   for (const expense of expenses) {
@@ -63,6 +63,10 @@ function printReport(expenses: Expense[]) {
 
   process.stdout.write('Meal Expenses: ' + mealExpenses + '\n')
   process.stdout.write('Total Expenses: ' + totalExpenses + '\n')
+}
+
+function printReport(expenses: Expense[]): void {
+  printReportOn(new Date().toISOString(), expenses)
 }
 
 export { sumTwoValues, printHelloWorld, printReport, Expense, ExpenseType }

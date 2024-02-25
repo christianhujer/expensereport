@@ -50,7 +50,8 @@ describe(`ExpenseReport`, () => {
             new Expense(ExpenseType.CAR_RENTAL, 4),
         ];
         printReport(expenses)
-        const expected = 'Expenses: 2024-02-25T09:06:36.016Z\n' +
+        const now = new Date().toISOString()
+        const expected = `Expenses: ${now}\n` +
           "Breakfast\t1\t \n" +
           "Breakfast\t1000\t \n" +
           "Breakfast\t1001\tX\n" +
