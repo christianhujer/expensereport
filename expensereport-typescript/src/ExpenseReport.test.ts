@@ -1,4 +1,4 @@
-import { printHelloWorld, printReport, sumTwoValues, Expense, ExpenseType } from './ExpenseReport'
+import { Expense, ExpenseType, printHelloWorld, printReport, sumTwoValues } from './ExpenseReport'
 
 describe(`ExpenseReport`, () => {
     it(`should keep its original behavior`, () => {
@@ -8,7 +8,7 @@ describe(`ExpenseReport`, () => {
             return true;
         })
         printReport([
-          new Expense("dinner", 5001)
+          new Expense(ExpenseType.DINNER, 5001)
         ])
         expect(interceptedOutput).toEqual("")
     })
