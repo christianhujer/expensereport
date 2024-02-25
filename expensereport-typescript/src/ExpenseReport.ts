@@ -33,7 +33,7 @@ function printReport(expenses: Expense[]) {
   let totalExpenses: number = 0
   let mealExpenses: number = 0
 
-  process.stdout.write('Expenses: ' + new Date().toISOString().substr(0, 10) + '\n')
+  process.stdout.write('Expenses: ' + new Date().toISOString() + '\n')
 
 
   for (const expense of expenses) {
