@@ -8,7 +8,7 @@ const printHelloWorld = (): void => {
 
 interface IExpenseType {
   name: string;
-  limit?: number;
+  limit: number;
   isMeal?: boolean;
 }
 
@@ -19,9 +19,9 @@ enum ExpenseType {
 }
 
 const ExpenseTypes: Record<ExpenseType, IExpenseType> = {
-  [ExpenseType.DINNER]: {name: 'Dinner'},
-  [ExpenseType.BREAKFAST]: {name: 'Breakfast'},
-  [ExpenseType.CAR_RENTAL]: {name: 'Car Rental'},
+  [ExpenseType.DINNER]: {name: 'Dinner', limit: 5000},
+  [ExpenseType.BREAKFAST]: {name: 'Breakfast', limit: 1000},
+  [ExpenseType.CAR_RENTAL]: {name: 'Car Rental', limit: Number.MAX_SAFE_INTEGER},
 }
 
 class Expense {
@@ -42,7 +42,7 @@ class Expense {
   }
 
   isOverLimit(): boolean {
-    return this.type == ExpenseType.DINNER && this.amount > 5000 || this.type == ExpenseType.BREAKFAST && this.amount > 1000
+    return this.amount > ExpenseTypes[this.type].limit
   }
 
 }
