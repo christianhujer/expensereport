@@ -99,6 +99,7 @@ The ExpenseReport example currently exists in the following languages:
 - Mercury
 - Modula-2 (once the linker starts working again)
 - Mojo
+- MUMPS (maybe)
 - Oberon
 - OCaml
 - Pony
