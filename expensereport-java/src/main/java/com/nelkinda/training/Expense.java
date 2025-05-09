@@ -1,6 +1,15 @@
 package com.nelkinda.training;
 
-public class Expense {
-    public ExpenseType type;
-    public int amount;
+public record Expense(ExpenseType type, int amount) {
+    public boolean isMeal() {
+        return type.isMeal();
+    }
+
+    public boolean exceedsLimit() {
+        return type.exceedsLimit(amount);
+    }
+
+    public String getName() {
+        return type.getName();
+    }
 }
