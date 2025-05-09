@@ -19,13 +19,12 @@ public class ReportPrinter {
         output.println(formatter.formatHeader());
 
         for (Expense expense : expenses) {
-            if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
-                mealExpenses += expense.amount;
+            if (expense.isMeal()) {
+                mealExpenses += expense.amount();
             }
 
             output.println(formatter.format(expense));
-
-            total += expense.amount;
+            total += expense.amount();
         }
 
         output.println(formatter.formatFooter(mealExpenses, total));
