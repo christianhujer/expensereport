@@ -138,7 +138,7 @@ To see solutions, switch to the [solutions branch](https://github.com/christianh
 
 ## Credits and License
 I first encountered the ExpenseReport example during a bootcamp at Equal Experts.
-I also have seen the ExpenseReport example being used by Robert "Uncle Bob" C. Martin.
+I also have seen the [ExpenseReport example](https://github.com/unclebob/Episode-10-ExpenseReport) being used by Robert "Uncle Bob" C. Martin.
 However, he seems to not be the original author (https://twitter.com/unclebobmartin/status/1537063143326855176?s=20&t=lh_vVb9jUQmY6PYG50974w)
 I have tried to research its origins but so far I have failed.
 If you know who has first come up with this example, please get in touch with me.
