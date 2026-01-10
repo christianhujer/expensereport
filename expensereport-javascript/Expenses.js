@@ -37,3 +37,8 @@ function printReport(expenses) {
     process.stdout.write("Meal expenses: " + mealExpenses);
     process.stdout.write("Total expenses: " + total);
 }
+
+module.exports = {
+    printReport,
+    type
+};
