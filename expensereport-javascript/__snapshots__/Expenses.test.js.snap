@@ -1,0 +1,6 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Expenses Report Characterization tests it characterizes the report output master snapshot 1`] = `
+"Expenses 2026-01-11
+Dinner	3000	 Breakfast	500	 Car Rental	4000	 Dinner	6000	XBreakfast	1500	XMeal expenses: 11000Total expenses: 15000"
+`;
