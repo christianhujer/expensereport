@@ -1,44 +1,72 @@
+const process = require("node:process");
+
 const type = {
-    BREAKFAST: 1,
-    DINNER: 2,
-    CAR_RENTAL: 3,
+  BREAKFAST: 1,
+  DINNER: 2,
+  CAR_RENTAL: 3
 };
 
-function printReport(expenses) {
-    let total = 0;
-    let mealExpenses = 0;
+function expenseNameFactory (expense) {
+  let expenseName;
+  switch (expense.type) {
+    case type.DINNER:
+      expenseName = "Dinner";
+      break;
+    case type.BREAKFAST:
+      expenseName = "Breakfast";
+      break;
+    case type.CAR_RENTAL:
+      expenseName = "Car Rental";
+      break;
+  }
+  return expenseName;
+}
 
-    process.stdout.write("Expenses " + new Date().toISOString().slice(0, 10) + "\n");
+function calculateTotal (expenses) {
+  let total = 0;
+  for (const expense of expenses) {
+    total += expense.amount;
+  }
+  return total;
+}
 
-    for (const expense of expenses) {
-        if (expense.type == type.DINNER || expense.type == type.BREAKFAST) {
-            mealExpenses += expense.amount;
-        }
+function isMeal (expense) {
+  return expense.type === type.DINNER || expense.type === type.BREAKFAST;
+}
 
-        let expenseName;
-        switch (expense.type) {
-        case type.DINNER:
-            expenseName = "Dinner";
-            break;
-        case type.BREAKFAST:
-            expenseName = "Breakfast";
-            break;
-        case type.CAR_RENTAL:
-            expenseName = "Car Rental";
-            break;
-        }
-
-        const mealOverExpensesMarker = ((expense.type == type.DINNER && expense.amount > 5000) || (expense.type == type.BREAKFAST && expense.amount > 1000)) ? "X" : " ";
-
-        process.stdout.write(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker);
-        total += expense.amount;
+function calculateMealExpenses (expenses) {
+  let mealExpenses = 0;
+  for (const expense of expenses) {
+    if (isMeal(expense)) {
+      mealExpenses += expense.amount;
     }
+  }
+  return mealExpenses;
+}
 
-    process.stdout.write("Meal expenses: " + mealExpenses);
-    process.stdout.write("Total expenses: " + total);
+function shouldMark (expense) {
+  return (expense.type === type.DINNER && expense.amount > 5000) || (expense.type === type.BREAKFAST && expense.amount > 1000);
+}
+
+function getMealOverExpensesMarker (expense) {
+  return shouldMark(expense) ? "X" : " ";
+}
+
+function printReport (expenses) {
+  const total = calculateTotal(expenses);
+  const mealExpenses = calculateMealExpenses(expenses);
+
+  process.stdout.write("Expenses " + new Date().toISOString().slice(0, 10) + "\n");
+
+  for (const expense of expenses) {
+    process.stdout.write(expenseNameFactory(expense) + "\t" + expense.amount + "\t" + getMealOverExpensesMarker(expense));
+  }
+
+  process.stdout.write("Meal expenses: " + mealExpenses);
+  process.stdout.write("Total expenses: " + total);
 }
 
 module.exports = {
-    printReport,
-    type
+  printReport,
+  type
 };
