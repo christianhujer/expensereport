@@ -17,6 +17,10 @@ class Expense {
   }
 }
 
+const isMeal = (type: ExpenseType): boolean => type === "dinner" || type === "breakfast";
+
+
+
 function printReport(expenses: Expense[]) {
   let totalExpenses: number = 0
   let mealExpenses: number = 0
@@ -25,9 +29,10 @@ function printReport(expenses: Expense[]) {
 
 
   for (const expense of expenses) {
-    if (expense.type == "dinner" || expense.type == "breakfast") {
-      mealExpenses += expense.amount
-    }
+
+  if (isMeal(expense.type)) {
+  mealExpenses += expense.amount
+}
 
     let expenseName = ""
     switch (expense.type) {
