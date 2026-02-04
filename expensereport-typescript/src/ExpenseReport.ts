@@ -20,34 +20,45 @@ class Expense {
 const isMeal = (type: ExpenseType): boolean => type === "dinner" || type === "breakfast";
 
 
+const expenseNameType = (type: ExpenseType): string => {
+  switch (type) {
+    case "dinner":   return "Dinner"
+    case "breakfast":  return "Breakfast"
+    case "car-rental": return "Car Rental"
+  }
+}
+
+const isMealOverExpense = (expense: Expense): boolean =>
+  (expense.type === "dinner" && expense.amount > 5000) ||
+  (expense.type === "breakfast" && expense.amount > 1000);
+
+const overExpenseMarker = (expense: Expense): string =>
+  isMealOverExpense(expense) ? "X" : " ";
+
+
+const reportDate = (date: Date): string => date.toISOString().substr(0, 10);
+
+
+
+
+
 
 function printReport(expenses: Expense[]) {
   let totalExpenses: number = 0
   let mealExpenses: number = 0
 
-  process.stdout.write("Expenses: " + new Date().toISOString().substr(0, 10) + "\n")
-
+  process.stdout.write("Expenses: " + reportDate(new Date()) + "\n")
 
   for (const expense of expenses) {
 
   if (isMeal(expense.type)) {
   mealExpenses += expense.amount
-}
+   }
 
-    let expenseName = ""
-    switch (expense.type) {
-      case "dinner":
-        expenseName = "Dinner"
-        break
-      case "breakfast":
-        expenseName = "Breakfast"
-        break
-      case "car-rental":
-        expenseName = "Car Rental"
-        break
-    }
 
-    let mealOverExpensesMarker = expense.type == "dinner" && expense.amount > 5000 || expense.type == "breakfast" && expense.amount > 1000 ? "X" : " "
+  const expenseName = expenseNameType(expense.type);
+
+  const mealOverExpensesMarker = overExpenseMarker(expense);
 
     process.stdout.write(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker + "\n")
 
