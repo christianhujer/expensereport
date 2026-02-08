@@ -1,13 +1,7 @@
 
 import { printMessage } from "./printMessage";
-
-
 import { sumTwoValues } from "./mathUtils";
-
-const printHelloWorld = (): void => {
-  const message = 'Hello, World!\n';
-  printMessage(message);
-}
+import { printHelloWorld } from "./helloWorldMessage";
 
 type ExpenseType = "dinner" | "breakfast" | "car-rental"
 
