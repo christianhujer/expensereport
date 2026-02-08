@@ -1,7 +1,6 @@
 import { printMessage } from './printMessage'
 import { sumTwoValues } from './mathUtils'
 import { printHelloWorld } from './helloWorldMessage'
-import { expenseNameType } from './expenseName'
 import { Expense, ExpenseType } from './expense'
 import { accumulateTotals, Totals } from './expenseTotals'
 import { EXPENSE_CONFIG } from './expenseConfig'
