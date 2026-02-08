@@ -1,6 +1,8 @@
 import { printMessage } from './printMessage'
 import { sumTwoValues } from './mathUtils'
 import { printHelloWorld } from './helloWorldMessage'
+import { expenseNameType } from './expenseName'
+
 
 type ExpenseType = 'dinner' | 'breakfast' | 'car-rental'
 
@@ -15,16 +17,6 @@ class Expense {
 
 const isMeal = (type: ExpenseType): boolean => type === 'dinner' || type === 'breakfast'
 
-const expenseNameType = (type: ExpenseType): string => {
-  switch (type) {
-    case 'dinner':
-      return 'Dinner'
-    case 'breakfast':
-      return 'Breakfast'
-    case 'car-rental':
-      return 'Car Rental'
-  }
-}
 
 const isMealOverExpense = (expense: Expense): boolean =>
   (expense.type === 'dinner' && expense.amount > 5000) ||
