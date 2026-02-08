@@ -1,4 +1,4 @@
-export type ExpenseType = 'dinner' | 'breakfast' | 'car-rental'
+export type ExpenseType = 'dinner' | 'breakfast' | 'car-rental' | 'lunch'  ;
 
 export class Expense {
   constructor(public type: ExpenseType, public amount: number) {
