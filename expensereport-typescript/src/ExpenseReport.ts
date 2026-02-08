@@ -3,9 +3,7 @@ import { sumTwoValues } from './mathUtils'
 import { printHelloWorld } from './helloWorldMessage'
 import { expenseNameType } from './expenseName'
 import { Expense, ExpenseType } from './expense'
-
-
-const isMeal = (type: ExpenseType): boolean => type === 'dinner' || type === 'breakfast'
+import { accumulateTotals, Totals } from './expenseTotals'
 
 
 const isMealOverExpense = (expense: Expense): boolean =>
@@ -23,22 +21,17 @@ const formatExpenseLine = (expense: Expense): string => {
 }
 
 function printReport(expenses: Expense[]) {
-  let totalExpenses: number = 0
-  let mealExpenses: number = 0
 
+   let totals: Totals = { totalExpenses: 0, mealExpenses: 0 }
   printMessage('Expenses: ' + reportDate(new Date()) + '\n')
 
-  for (const expense of expenses) {
-    if (isMeal(expense.type)) {
-      mealExpenses += expense.amount
-    }
+ for (const expense of expenses) {
+    totals = accumulateTotals(totals, expense)
     printMessage(formatExpenseLine(expense))
-
-    totalExpenses += expense.amount
   }
 
-  printMessage('Meal Expenses: ' + mealExpenses + '\n')
-  printMessage('Total Expenses: ' + totalExpenses + '\n')
+  printMessage(`Meal Expenses: ${totals.mealExpenses}\n`)
+  printMessage(`Total Expenses: ${totals.totalExpenses}\n`)
 }
 
 export { sumTwoValues, printHelloWorld, printReport, Expense, ExpenseType }
