@@ -1,10 +1,11 @@
-const message = 'Hello, World!\n';
+
 import { printMessage } from "./printMessage";
 
 
-const sumTwoValues = (a: number, b: number): number => a + b
+import { sumTwoValues } from "./mathUtils";
 
 const printHelloWorld = (): void => {
+  const message = 'Hello, World!\n';
   printMessage(message);
 }
 
