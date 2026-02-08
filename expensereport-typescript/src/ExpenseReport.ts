@@ -2,18 +2,8 @@ import { printMessage } from './printMessage'
 import { sumTwoValues } from './mathUtils'
 import { printHelloWorld } from './helloWorldMessage'
 import { expenseNameType } from './expenseName'
+import { Expense, ExpenseType } from './expense'
 
-
-type ExpenseType = 'dinner' | 'breakfast' | 'car-rental'
-
-class Expense {
-  type: ExpenseType
-  amount: number
-  constructor(type: ExpenseType, amount: number) {
-    this.type = type
-    this.amount = amount
-  }
-}
 
 const isMeal = (type: ExpenseType): boolean => type === 'dinner' || type === 'breakfast'
 
