@@ -6,6 +6,10 @@ This is an example of a piece of legacy code with lots of code smells.
 The goal is to support the following new feature as best as you can:
 * Add Lunch with an expense limit of 2000.
 
+> [!WARNING]
+> Please do NOT submit pull requests with solutions to the main branch.
+> Solution PRs to the main branch will be closed without comment.
+
 ## Process
 1. 📚 Read the code to understand what it does and how it works.
 2. 🦨 Read the code and check for design and code smells. Make a list of all code and design smells that you find.
