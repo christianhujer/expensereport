@@ -42,6 +42,7 @@ The ExpenseReport example currently exists in the following languages:
 - [F#](expensereport-fsharp/)
 - [Fortran](expensereport-fortran/)
 - [Go](expensereport-go/)
+- [Gosu](expensereport-gosu/)
 - [Groovy](expensereport-groovy-script/)
 - [Haskell](expensereport-haskell/)
 - [Java](expensereport-java/)
@@ -94,7 +95,6 @@ The ExpenseReport example currently exists in the following languages:
 - Flix
 - Forth
 - Gleam
-- Gosu
 - Hack
 - Hare
 - Java Byte Code / JVM Assembler
