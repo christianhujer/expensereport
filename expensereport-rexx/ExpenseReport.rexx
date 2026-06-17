@@ -1,39 +1,69 @@
 /* Expense Report */
-DINNER = 0; BREAKFAST = 1; CAR_RENTAL = 2
+expenseType.DINNER.name = "Dinner"
+expenseType.DINNER.limit = 5000
+expenseType.DINNER.isMeal = 1
+expenseType.BREAKFAST.name = "Breakfast"
+expenseType.BREAKFAST.limit = 1000
+expenseType.BREAKFAST.isMeal = 1
+expenseType.CAR_RENTAL.name = "Car Rental"
+expenseType.CAR_RENTAL.limit = 65535
+expenseType.CAR_RENTAL.isMeal = 0
+expenseType.LUNCH.name = "Lunch"
+expenseType.LUNCH.limit = 2000
+expenseType.LUNCH.isMeal = 1
 
-expense.0.type = DINNER; expense.0.amount = 5000
-expense.1.type = DINNER; expense.1.amount = 5001
-expense.2.type = BREAKFAST; expense.2.amount = 1000
-expense.3.type = BREAKFAST; expense.3.amount = 1001
-expense.4.type = CAR_RENTAL; expense.4.amount = 4
+expense.0 = 7
+expense.1.type = DINNER; expense.1.amount = 5000
+expense.2.type = DINNER; expense.2.amount = 5001
+expense.3.type = BREAKFAST; expense.3.amount = 1000
+expense.4.type = BREAKFAST; expense.4.amount = 1001
+expense.5.type = CAR_RENTAL; expense.5.amount = 4
+expense.6.type = LUNCH; expense.6.amount = 2000
+expense.7.type = LUNCH; expense.7.amount = 2001
 
 CALL printReport
 EXIT 0
 
 printReport:
-    total = 0
-    mealExpenses = 0
+    CALL printHeader
+    CALL printDetails
+    CALL printSummary
+    RETURN
 
+printHeader:
     SAY "Expenses:" DATE() TIME()
+    RETURN
 
-    DO i = 0 TO 4
-        IF expense.i.type = DINNER | expense.i.type = BREAKFAST THEN mealExpenses = mealExpenses + expense.i.amount
+printDetail:
+    typ = expense.i.type
+    expenseName = expenseType.typ.name
+    IF expense.i.amount > expenseType.typ.limit THEN mealOverExpensesMarker = "X"
+    ELSE mealOverExpensesMarker = " "
+    SAY expenseName expense.i.amount mealOverExpensesMarker
+    RETURN
 
-        expenseName = ""
-        SELECT
-            WHEN expense.i.type = DINNER THEN expenseName = "Dinner"
-            WHEN expense.i.type = BREAKFAST THEN expenseName = "Breakfast"
-            WHEN expense.i.type = CAR_RENTAL THEN expenseName = "Car Rental"
-        END
+printDetails:
+    DO i = 1 TO expense.0
+        CALL printDetail
+    END
+    RETURN
 
-        IF expense.i.type = DINNER & expense.i.amount > 5000 | expense.i.type = BREAKFAST & expense.i.amount > 1000 THEN mealOverExpensesMarker = "X"
-        ELSE mealOverExpensesMarker = " "
+printSummary:
+    SAY "Meal expenses:" sumMeals()
+    SAY "Total expenses:" sumTotal()
+    RETURN
 
-        SAY expenseName expense.i.amount mealOverExpensesMarker
+sumMeals:
+    meals = 0
+    DO i = 1 TO expense.0
+        typ = expense.i.type
+        IF expenseType.typ.isMeal THEN meals = meals + expense.i.amount
+    END
+    RETURN meals
 
+sumTotal:
+    total = 0
+    DO i = 1 TO expense.0
         total = total + expense.i.amount
     END
-
-    SAY "Meal expenses:" mealExpenses
-    SAY "Total expenses:" total
-    RETURN
+    RETURN total

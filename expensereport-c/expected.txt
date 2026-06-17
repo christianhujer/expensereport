@@ -1,0 +1,13 @@
+Expenses Fri May 20 10:24:09 2022
+Dinner	1	 
+Breakfast	2	 
+Car Rental	4	 
+Lunch	8	 
+Dinner	5000	 
+Dinner	5001	X
+Breakfast	1000	 
+Breakfast	1001	X
+Lunch	2000	 
+Lunch	2001	X
+Meal expenses: 16014
+Total expenses: 16018

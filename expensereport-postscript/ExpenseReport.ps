@@ -1,65 +1,64 @@
-/dinner 1 def
-/breakfast 2 def
-/car_rental 3 def
+/dinner [(Dinner) true 5000] def
+/breakfast [(Breakfast) true 1000] def
+/car_rental [(Car Rental) false 2147483647] def
+/lunch [(Lunch) true 2000] def
+
+/ExpenseType_name { 0 get } def
+/ExpenseType_isMeal { 1 get } def
+/ExpenseType_limit { 2 get } def
+
+/Expense_type { 0 get } def
+/Expense_amount { 1 get } def
+/Expense_name { Expense_type ExpenseType_name } def
+/Expense_isMeal { Expense_type ExpenseType_isMeal } def
+/Expense_limit { Expense_type ExpenseType_limit } def
+/Expense_isOverLimit { dup Expense_amount exch Expense_limit gt } def
 
 /printReport {
-    (Expenses:) =
-
-    dup
-    {
-        dup 0 get
-            dup dinner eq { pop (Dinner)} {
-            dup breakfast eq { pop (Breakfast) } {
-            dup car_rental eq { pop (Car Rental) } {
-            pop ()
-            } ifelse
-            } ifelse
-            } ifelse
-            print
-        (\t) print
-        dup 1 get 10 string cvs print
-        (\t) print
-        dup
-            dup 0 get dinner eq 2 1 roll 1 get 5000 gt and
-        2 1 roll
-            dup 0 get breakfast eq 2 1 roll 1 get 1000 gt and
-        or
-        { (X) }
-        { ( ) }
-        ifelse print
-        (\n) print
-    } forall
-
-    dup
-    (Meal Expenses: ) print
-    0
-    2 1 roll
-    {
-        dup dup
-        0 get
-        dinner
-        eq
-        2 1 roll
-        0 get
-        breakfast
-        eq
-        or
-        { 1 get }
-        { pop 0 }
-        ifelse
-        add
-    } forall
-    =
-
-    (Total Expenses: ) print
-    0
-    2 1 roll
-    {
-        1 get
-        add
-    } forall
-    =
+    printHeader
+    dup printDetails
+    dup printSummary
+    pop
 } def
 
-[[dinner 5000] [dinner 5001] [breakfast 1000] [breakfast 1001] [car_rental 4]]
+/printHeader {
+    (Expenses:) =
+} def
+
+/printDetails {
+    { printDetail } forall
+} def
+
+/printDetail {
+    dup Expense_name print
+    (\t) print
+    dup Expense_amount 10 string cvs print
+    (\t) print
+    dup Expense_isOverLimit { (X) } { ( ) } ifelse print
+    (\n) print
+    pop
+} def
+
+/printSummary {
+    dup (Meal Expenses: ) print sumMeals =
+    dup (Total Expenses: ) print sumTotal =
+    pop
+} def
+
+/sumMeals {
+    0 exch
+    {
+        dup Expense_isMeal
+        { Expense_amount add }
+        { pop }
+        ifelse
+    } forall
+} def
+
+/sumTotal {
+    0 exch
+    { Expense_amount add } forall
+} def
+
+[[dinner 5000] [dinner 5001] [breakfast 1000] [breakfast 1001] [car_rental 4] [lunch 2000] [lunch 2001]]
 printReport

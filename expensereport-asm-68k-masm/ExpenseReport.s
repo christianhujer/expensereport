@@ -6,10 +6,6 @@ _LVOWrite		EQU	-48
 
 OS_VERSION		EQU	33
 
-DINNER		EQU	1
-BREAKFAST	EQU	2
-CAR_RENTAL	EQU	3
-
 	MC68020 ; using divul.l for itoa
 
 	SECTION	TEXT
@@ -39,8 +35,9 @@ main
 	move.l	(160,a0),d0
 	move.l	d0,(stdout)
 
+	move.l	(dosBase),a6
 	lea	(expenses),a0
-	bsr.s	printReport
+	bsr	ExpenseList_printReport
 
 .closeDos
 	move.l	(dosBase),a1
@@ -50,184 +47,214 @@ main
 	moveq	#1,d1
 	rts
 
-printReport
-	movem.l	d2/d3/d5/d6/d7/a2/a6,-(sp)
+ExpenseList_printReport
+	movem.l	a2,-(sp)
+
 	move.l	a0,a2
-	moveq	#0,d5	; mealExpenses
-	moveq	#0,d6	; totalExpenses
+	bsr	ExpenseList_printReportHeader
 
-	move.l	(dosBase),a6
+	move.l	a2,a0
+	bsr	ExpenseList_printReportDetails
 
-	move.l	(stdout),d1
-	move.l	#expenseReport,d2
-	moveq	#expenseReportEnd-expenseReport,d3
-	jsr	(_LVOWrite,a6)
+	move.l	a2,a0
+	bsr	ExpenseList_printReportSummary
 
-	move.l	(stdout),d1
-	move.l	#newline,d2
-	moveq	#1,d3
-	jsr	(_LVOWrite,a6)
+	movem.l	(sp)+,a2
+	rts
 
+ExpenseList_printReportHeader
+	lea	(expenseReport),a0
+	bsr	printString
+	bra	_newline
+
+ExpenseList_printReportDetails
+	movem.l	a2,-(sp)
+	move.l	a0,a2
 .loop
 	move.l	(a2),d0
 	beq	.loopDone
+	move.l	a2,a0
+	bsr	Expense_printDetail
+	addq	#8,a2	; next expense
+	bra	.loop
+.loopDone
 
-	cmp.l	#DINNER,d0
-	beq.s	.meal
-	cmp.l	#BREAKFAST,d0
-	beq.s	.meal
-	bra.s	.notMeal
-.meal
-	move.l	(4,a2),d1
-	add.l	d1,d5
-.notMeal
+	movem.l	(sp)+,a2
+	rts
 
-	lea	(expenseNames),a0
-	move.l	(a0,d0*4),a0
-	move.l	a0,d2
-.countExpenseName
-	move.b	(a0)+,d0
-	bne.s	.countExpenseName
-	move.l	a0,d3
-	sub.l	d2,d3
-	subq	#1,d3
-	move.l	(stdout),d1
-	jsr	(_LVOWrite,a6)
+Expense_printDetail
+	movem.l	d2/d3/a2,-(sp)
+	move.l	a0,a2
+	bsr	Expense_getName
+	move.l	d0,a0
+	bsr	printString
 
-	lea	(tab),a0
-	move.l	(stdout),d1
-	move.l	a0,d2
-	moveq	#1,d3
-	jsr	(_LVOWrite,a6)
+	bsr	_tab
 
 	move.l	(4,a2),d0
-	lea	buffer,a0
-	bsr	itoa10
-	move.l	d0,d2
-	move.l	d2,a0
-.countAmount
-	move.b	(a0)+,d0
-	bne.s	.countAmount
-	move.l	a0,d3
-	sub.l	d2,d3
-	subq	#1,d3
-	move.l	(stdout),d1
-	jsr	(_LVOWrite,a6)
+	bsr	printNumber
 
-	lea	(tab),a0
-	move.l	(stdout),d1
-	move.l	a0,d2
-	moveq	#1,d3
-	jsr	(_LVOWrite,a6)
+	bsr	_tab
 
-	move.l	(a2),d0
-	move.l	(4,a2),d1
-	cmp.l	#DINNER,d0
-	bne.s	.notDinner
-	cmp.l	#5000,d1
-	bgt.s	.mealOverExpense
-	bra.s	.mealNotOverExpense
-.notDinner
-	cmp.l	#BREAKFAST,d0
-	bne.s	.notBreakfast
-	cmp.l	#1000,d1
-	bgt.s	.mealOverExpense
-	bra.s	.mealNotOverExpense
-.notBreakfast
-	bra.s	.mealNotOverExpense
+	move.l	a2,a0
+	bsr	Expense_isOverLimit
+	beq.s	.mealNotOverExpense
 .mealOverExpense
 	lea	(mealOverExpensesMarker),a0
 	bra.s	.printMealOverExpensesMarker
 .mealNotOverExpense
 	lea	(mealNotOverExpensesMarker),a0
 .printMealOverExpensesMarker
-	move.l	(stdout),d1
-	move.l	a0,d2
-	moveq	#1,d3
-	jsr	(_LVOWrite,a6)
+	bsr	printString
+	bsr	_newline
+	movem.l	(sp)+,d2/d3/a2
+	rts
 
-	lea	(newline),a0
-	move.l	(stdout),d1
-	move.l	a0,d2
-	moveq	#1,d3
-	jsr	(_LVOWrite,a6)
+ExpenseList_printReportSummary
+	movem.l	a3,-(sp)
+	move.l	a0,a3
 
-	move.l	(4,a2),d1
-	add.l	d1,d6
+	move.l	a3,a0
+	bsr	ExpenseList_sumMeals
+	lea	(meals),a0
+	bsr	.printReportSummaryLine
 
-	addq	#8,a2	; next expense
+	move.l	a3,a0
+	bsr	ExpenseList_sumTotal
+	lea	(total),a0
+	bsr	.printReportSummaryLine
+
+	movem.l	(sp)+,a3
+	rts
+; @param a0 Label to print.
+; @param d0 Number to print
+.printReportSummaryLine
+	movem.l	d0,-(sp)
+	bsr	printString
+	movem.l	(sp)+,d0
+	bsr	printNumber
+	bra	_newline
+
+; Calculates the sum of all expenses.
+; @param a0 Expenses, terminated with an expense of type NULL
+; @return d0 Sum of all expenses.
+; @destroys a0,d0,d1
+ExpenseList_sumTotal
+	moveq	#0,d0
+.loop
+	move.l	(a0)+,d1
+	beq	.loopDone
+	add.l	(a0)+,d0
 	bra	.loop
 .loopDone
-
-	move.l	(stdout),d1
-	lea	(meals),a0
-	move.l	a0,d2
-	moveq	#mealsEnd-meals,d3
-	jsr	(_LVOWrite,a6)
-
-	move.l	d5,d0
-	lea	(buffer),a0
-	bsr	itoa10
-	move.l	d0,d2
-	move.l	d2,a0
-.count2
-	move.b	(a0)+,d0
-	bne.s	.count2
-	move.l	a0,d3
-	sub.l	d2,d3
-	subq	#1,d3
-	move.l	(stdout),d1
-	move.l	(dosBase),a6
-	jsr	(_LVOWrite,a6)
-
-	move.l	(stdout),d1
-	lea	(newline),a0
-	move.l	a0,d2
-	moveq	#1,d3
-	jsr	(_LVOWrite,a6)
-
-	move.l	(stdout),d1
-	lea	(total),a0
-	move.l	a0,d2
-	moveq	#totalEnd-total,d3
-	jsr	(_LVOWrite,a6)
-
-	move.l	d6,d0
-	lea	(buffer),a0
-	bsr	itoa10
-	move.l	d0,d2
-	move.l	d2,a0
-.count3
-	move.b	(a0)+,d0
-	bne.s	.count3
-	move.l	a0,d3
-	sub.l	d2,d3
-	subq	#1,d3
-	move.l	(stdout),d1
-	move.l	(dosBase),a6
-	jsr	(_LVOWrite,a6)
-
-	move.l	(stdout),d1
-	lea	(newline),a0
-	move.l	a0,d2
-	moveq	#1,d3
-	jsr	(_LVOWrite,a6)
-	movem.l	(sp)+,d2/d3/d5/d6/d7/a2/a6
 	rts
 
-; Returns the length of a NUL-terminated string, without the NUL byte
-; @param a0 NUL-terminated string
-; @return d0 Length of the NUL-terminated string
-; @destroys d0,a0,a1
-strlen
+; Calculates the sum of all meal expenses.
+; @param a0 Expenses, terminated with an expense of type NULL
+; @return d0 Sum of all expenses.
+; @destroys a0,a1,d0,d1
+ExpenseList_sumMeals
+	movem.l	d2/d3,-(a7)
 	move.l	a0,a1
-.count
-	move.b	(a1)+,d0
-	bne.s	.count
-	move.l	a1,d0
-	sub.l	a0,d0
-	subq	#1,d0
+	moveq	#0,d3
+.loop
+	move.l	(a1)+,d0
+	beq	.loopDone
+	move.l	d0,a0
+	move.l	(a1)+,d2
+	bsr	ExpenseType_isMeal
+	beq	.notMeal
+	add.l	d2,d3
+.notMeal
+	bra.s	.loop
+.loopDone
+	move.l	d3,d0
+	movem.l	(a7)+,d2/d3
 	rts
+
+; Returns whether an expense is a meal.
+; @param a0 Expense
+; @return d0 1 if the expense is a meal, 0 otherwise.
+; @return CC=Z̅ if the expense is a meal, Z otherwise.
+; @destroys a0,d0
+Expense_isMeal
+	move.l	(a0),a0
+	; fallthrough
+; Returns whether an expense type is a meal.
+; @param a0 ExpenseType
+; @return d0 1 if the expense is a meal, 0 otherwise.
+; @return CC=Z̅ if the expense is a meal, Z otherwise.
+; @destroys d0
+ExpenseType_isMeal
+	move.l	(8,a0),d0
+	rts
+
+; Returns whether an expense is over its limit.
+; @param a0 Expense
+; @return d0 1 if the expense is over its limit, 0 otherwise.
+; @return CC=Z̅ if the expense is over its limit, Z otherwise.
+; @destroys a0,d0
+Expense_isOverLimit
+	move.l	(4,a0),d0
+	move.l	(a0),a0
+	cmp.l	(4,a0),d0
+	bls.s	.notOverLimit
+.overLimit
+	moveq	#1,d0
+	rts
+.notOverLimit
+	moveq	#0,d0
+	rts
+
+; Returns the name of an expense.
+; @param a0 Expense
+; @return d0 The name of the expense.
+; @destroys a0,d0
+Expense_getName
+	move.l	(a0),a0
+	; fallthrough
+; Returns the name of an expense type.
+; @param a0 ExpenseType
+; @return d0 The name of the expense.
+; @destroys d0
+ExpenseType_getName
+	move.l	(a0),d0
+	rts
+
+; @param a0 String to print
+printString
+	movem.l	d2/d3,-(sp)
+	move.l	a0,d2
+.strlen
+	move.b	(a0)+,d0
+	bne.s	.strlen
+	move.l	a0,d3
+	sub.l	d2,d3
+	subq	#1,d3
+	move.l	(stdout),d1
+	jsr	(_LVOWrite,a6)
+	movem.l	(sp)+,d2/d3
+	rts
+
+; @param d0 Number to print
+printNumber
+	lea	buffer,a0
+	bsr	itoa10
+	move.l	d0,a0
+	bra	printString
+
+_print1
+	move.l	a0,d2
+	move.l	(stdout),d1
+	moveq	#1,d3
+	jmp	(_LVOWrite,a6)
+_tab
+	lea	(tab),a0
+	bra	_print1
+_newline
+	lea	(newline),a0
+	bra	_print1
+
 
 ; Converts a number into a decimal string
 ; @param a0 buffer in which to convert the number
@@ -242,7 +269,7 @@ itoa10
 	add.l	#'0',d1
 	move.b	d1,(a0)+
 	tst.l	d0
-	bne.s .loop
+	bne.s	.loop
 
 	move.b	#0,d1
 	move.b	d1,(a0)+
@@ -277,16 +304,20 @@ expenseNames		dc.l	0,dinner,breakfast,car_rental
 dinner			dc.b	"Dinner",0
 breakfast		dc.b	"Breakfast",0
 car_rental		dc.b	"Car Rental",0
+lunch			dc.b	"Lunch",0
 tab			dc.b	9,0
 newline			dc.b	10,0
-expenseReport		dc.b	"Expenses: "
-expenseReportEnd	dc.b	0
-meals			dc.b	"Meal Expenses: "
-mealsEnd		dc.b	0
-total			dc.b	"Total Expenses: "
-totalEnd		dc.b	0
+expenseReport		dc.b	"Expenses: ",0
+meals			dc.b	"Meal Expenses: ",0
+total			dc.b	"Total Expenses: ",0
 mealOverExpensesMarker	dc.b	"X",0
 mealNotOverExpensesMarker	dc.b	" ",0
+	align.l
+ExpenseTypes
+DINNER		dc.l	dinner,5000,1
+BREAKFAST	dc.l	breakfast,1000,1
+CAR_RENTAL	dc.l	car_rental,-1,0
+LUNCH		dc.l	lunch,2000,1
 
 	SECTION	DATA
 	align.l
@@ -296,6 +327,8 @@ expenses
 	dc.l	BREAKFAST,1000
 	dc.l	BREAKFAST,1001
 	dc.l	CAR_RENTAL,4
+	dc.l	LUNCH,2000
+	dc.l	LUNCH,2001
 	dc.l	0,0
 
 	SECTION	BSS

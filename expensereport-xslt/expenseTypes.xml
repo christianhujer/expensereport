@@ -1,0 +1,6 @@
+<expenseTypes>
+    <expenseType name="DINNER" limit="5000" isMeal="isMeal">Dinner</expenseType>
+    <expenseType name="BREAKFAST" limit="1000" isMeal="isMeal">Breakfast</expenseType>
+    <expenseType name="CAR_RENTAL">Car Rental</expenseType>
+    <expenseType name="LUNCH" limit="2000" isMeal="isMeal">Lunch</expenseType>
+</expenseTypes>

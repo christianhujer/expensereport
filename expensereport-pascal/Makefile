@@ -1,6 +1,8 @@
+SHELL:=bash
+
 .PHONY: all
 all: ExpenseReport
-	./ExpenseReport
+	diff -I '^Expenses: ' expected.txt <(./ExpenseReport)
 
 .PHONY: clean
 clean::

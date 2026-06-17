@@ -16,6 +16,10 @@ pip-install:
 .PHONY: test
 test: .coverage
 
+.PHONY: black
+black:
+	black .
+
 .PHONY: lint
 lint:
 	mypy *.py

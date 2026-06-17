@@ -1,43 +1,52 @@
 #include <chrono>
+#include <climits>
 #include <iostream>
 #include <iterator>
+#include <numeric>
+#include <optional>
+#include <ranges>
+#include <tuple>
+#include <utility>
+#include <variant>
 #include "ExpenseReport.h"
 
 using namespace std;
 
-void printReport(list<Expense> expenses)
-{
-    int total = 0;
-    int mealExpenses = 0;
+template<class InputIterator> int sumTotal(InputIterator& expenses) {
+    return accumulate(begin(expenses), end(expenses), 0, [](int acc, const Expense &expense) { return acc + expense.amount; });
+}
 
+int sumMeals(const list<Expense>& expenses) {
+    auto meals = expenses | views::filter(&Expense::isMeal);
+    return sumTotal(meals);
+}
+
+void printHeader(ostream& cout) {
     auto now = chrono::system_clock::to_time_t(chrono::system_clock::now());
     cout << "Expenses " << ctime(&now);
+}
 
-    for (list<Expense>::iterator expense = expenses.begin(); expense != expenses.end(); ++expense) {
-        if (expense->type == BREAKFAST || expense->type == DINNER) {
-            mealExpenses += expense->amount;
-        }
+void printDetail(ostream& cout, const Expense& expense) {
+    string mealOverExpensesMarker = expense.isOverLimit() ? "X" : " ";
+    cout << expense.name() << '\t' << expense.amount << '\t' << mealOverExpensesMarker << endl;
+}
 
-        string expenseName = "";
-        switch (expense->type) {
-        case DINNER:
-            expenseName = "Dinner";
-            break;
-        case BREAKFAST:
-            expenseName = "Breakfast";
-            break;
-        case CAR_RENTAL:
-            expenseName = "Car Rental";
-            break;
-        }
+void printDetails(ostream& cout, const list<Expense>& expenses) {
+    for (auto const &expense : expenses)
+        printDetail(cout, expense);
+}
 
-        string mealOverExpensesMarker = (expense->type == DINNER && expense->amount > 5000) || (expense->type == BREAKFAST && expense->amount > 1000) ? "X" : " ";
+void printSummary(ostream& cout, const list<Expense>& expenses) {
+    cout << "Meal expenses: " << sumMeals(expenses) << endl;
+    cout << "Total expenses: " << sumTotal(expenses) << endl;
+}
 
-        cout << expenseName << '\t' << expense->amount << '\t' << mealOverExpensesMarker << '\n';
+void printReport(ostream& cout, const list<Expense>& expenses) {
+    printHeader(cout);
+    printDetails(cout, expenses);
+    printSummary(cout, expenses);
+}
 
-        total += expense->amount;
-    }
-
-    cout << "Meal expenses: " << mealExpenses << '\n';
-    cout << "Total expenses: " << total << '\n';
+void printReport(const list<Expense>& expenses) {
+    printReport(cout, expenses);
 }
