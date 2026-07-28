@@ -68,7 +68,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Smalltalk](expensereport-smalltalk/)
 - [SQL](expensereport-sql/) (Using SQLite3)
 - [Swift](expensereport-swift/)
-- [TcL](expensereport-tcl/)
+- [Tcl](expensereport-tcl/)
 - [TypeScript](expensereport-typescript/)
 - [Visual BASIC](expensereport-vb/)
 - [XML/XSLT](expensereport-xslt/)
