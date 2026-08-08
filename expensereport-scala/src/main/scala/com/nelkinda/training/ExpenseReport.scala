@@ -2,44 +2,44 @@ package com.nelkinda.training
 
 import java.util.Date
 
-class ExpenseType {
-}
+enum ExpenseType:
+  case DINNER, BREAKFAST, CAR_RENTAL
 
-object ExpenseType {
-    val DINNER = new ExpenseType()
-    val BREAKFAST = new ExpenseType()
-    val CAR_RENTAL = new ExpenseType()
-}
+class Expense(
+    val `type`: ExpenseType,
+    val amount: Int
+)
 
-class Expense(val `type`: ExpenseType, val amount: Int)
+class ExpenseReport:
+  def printReport(expenses: List[Expense]): Unit =
+    var total = 0
+    var mealExpenses = 0
 
+    println("Expenses " + new Date())
 
-class ExpenseReport {
-    def printReport(expenses: List[Expense]) {
-        var total = 0
-        var mealExpenses = 0
+    for (expense <- expenses)
+      if (expense.`type` == ExpenseType.DINNER || expense.`type` == ExpenseType.BREAKFAST)
+        mealExpenses += expense.amount
 
-        println(s"Expense Report: ${new Date()}")
+      var expenseName = ""
+      expense.`type` match
+        case ExpenseType.DINNER =>
+          expenseName = "Dinner"
+        case ExpenseType.BREAKFAST =>
+          expenseName = "Breakfast"
+        case ExpenseType.CAR_RENTAL =>
+          expenseName = "Car Rental"
 
-        for (expense <- expenses) {
-            if (expense.`type` == ExpenseType.DINNER || expense.`type` == ExpenseType.BREAKFAST) {
-                mealExpenses += expense.amount
-            }
+      val mealOverExpensesMarker =
+        if (
+          expense.`type` == ExpenseType.DINNER && expense.amount > 5000 ||
+          expense.`type` == ExpenseType.BREAKFAST && expense.amount > 1000
+        ) "X"
+        else " "
 
-            var expenseName = expense.`type` match {
-                case ExpenseType.DINNER => "Dinner"
-                case ExpenseType.BREAKFAST => "Breakfast"
-                case ExpenseType.CAR_RENTAL => "Car Rental"
-            }
+      println(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
 
-            var mealOverExpensesMarker = if (expense.`type` == ExpenseType.DINNER && expense.amount > 5000 || expense.`type` == ExpenseType.BREAKFAST && expense.amount > 1000) "X" else " "
+      total += expense.amount
 
-            println(s"${expenseName}\t${expense.amount}\t${mealOverExpensesMarker}")
-
-            total += expense.amount
-        }
-
-        println(s"Meal Expenses: ${mealExpenses}")
-        println(s"Total Expenses: ${total}")
-    }
-}
+    println("Meal expenses: " + mealExpenses)
+    println("Total expenses: " + total)

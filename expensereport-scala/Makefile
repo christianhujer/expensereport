@@ -7,4 +7,4 @@ test:
 
 .PHONY: clean
 clean::
-	$(RM) -r project/ target/
+	sbt clean
