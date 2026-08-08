@@ -1,37 +1,75 @@
+const int intMaxValue = 9223372036854775807;
+
 enum ExpenseType {
-    DINNER, BREAKFAST, CAR_RENTAL
+  DINNER(name: "Dinner", limit: 5000),
+  BREAKFAST(name: "Breakfast", limit: 1000),
+  CAR_RENTAL(name: "Car Rental", limit: intMaxValue, isMeal: false);
+
+  final int limit;
+  final String name;
+  final bool isMeal;
+
+  const ExpenseType(
+      {required this.name, required this.limit, this.isMeal = true});
 }
 
 class Expense {
-    ExpenseType type = ExpenseType.DINNER;
-    int amount = 0;
-    Expense(ExpenseType type, int amount) {
-        this.type = type;
-        this.amount = amount;
-    }
+  ExpenseType type = ExpenseType.DINNER;
+  int amount = 0;
+
+  String get name => type.name;
+  bool get exceedsLimit => amount > type.limit;
+
+  Expense(ExpenseType type, int amount) {
+    this.type = type;
+    this.amount = amount;
+  }
 }
 
 class ExpenseReport {
-    void printReport(List<Expense> expenses) {
-        var mealExpenses = 0;
-        var totalExpenses = 0;
-        var date = DateTime.now();
-        print('Expense Report: $date');
-        for (var expense in expenses) {
-            if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
-                mealExpenses += expense.amount;
-            }
-            String expenseName;
-            switch (expense.type) {
-                case ExpenseType.DINNER: expenseName = 'Dinner'; break;
-                case ExpenseType.BREAKFAST: expenseName = 'Breakfast'; break;
-                case ExpenseType.CAR_RENTAL: expenseName = 'Car Rental'; break;
-            };
-            var mealOverExpensesMarker = expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000 ? 'X' : ' ';
-            print('$expenseName\t${expense.amount}\t$mealOverExpensesMarker');
-            totalExpenses += expense.amount;
-        }
-        print('Meal Expenses: $mealExpenses');
-        print('Total Expenses: $totalExpenses');
-    }
+  int _getMealExpense(List<Expense> expenses) {
+    return expenses
+        .where((e) => (e.type.isMeal))
+        .fold(0, (a, b) => a + b.amount);
+  }
+
+  int _getTotalExpense(List<Expense> expenses) {
+    return expenses.fold(0, (a, b) => a + b.amount);
+  }
+
+  String _getHeader(DateTime date) {
+    return 'Expense Report: $date\n';
+  }
+
+  String _getSingleExpenseReport(Expense expense) {
+    var mealOverExpensesMarker = expense.exceedsLimit ? "X" : "";
+    return '${expense.name}\t${expense.amount}\t$mealOverExpensesMarker\n';
+  }
+
+  String _getBody(List<Expense> expenses) {
+    return expenses.map((e) => _getSingleExpenseReport(e)).join("");
+  }
+
+  String _getMealExpenseReport(List<Expense> expenses) {
+    var mealExpenses = _getMealExpense(expenses);
+    return 'Meal Expenses: $mealExpenses\n';
+  }
+
+  String _getTotalExpenseReport(List<Expense> expenses) {
+    var totalExpenses = _getTotalExpense(expenses);
+    return 'Total Expenses: $totalExpenses\n';
+  }
+
+  String _getFooter(List<Expense> expenses) {
+    return _getMealExpenseReport(expenses) + _getTotalExpenseReport(expenses);
+  }
+
+  String _getFormattedReport(List<Expense> expenses) {
+    var date = DateTime.now();
+    return _getHeader(date) + _getBody(expenses) + _getFooter(expenses);
+  }
+
+  void printReport(List<Expense> expenses) {
+    print(_getFormattedReport(expenses));
+  }
 }
