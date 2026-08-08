@@ -1,0 +1,21 @@
+{
+    "name": "refactor/expensereport-php",
+    "type": "project",
+    "require": {
+        "php": ">=7.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Refactor\\ExpenseReportPhp\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Refactor\\ExpenseReportPhp\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable"
+}
