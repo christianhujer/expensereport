@@ -1,0 +1,4 @@
+Expenses Fri Jun 03 12:02:48 CEST 2022
+Breakfast	500	 
+Meal expenses: 500
+Total expenses: 500

@@ -44,6 +44,7 @@ dependencyManagement {
         }
         dependency("org.pitest:pitest-junit5-plugin:0.15")
         dependency("org.pitest:pitest-command-line:1.8.0")
+        dependency("com.approvaltests:approvaltests:15.6.0")
     }
 }
 
@@ -63,6 +64,7 @@ dependencies {
     testImplementation("org.junit.platform:junit-platform-suite-api")
     testImplementation("org.junit.platform:junit-platform-suite-commons")
     testImplementation("org.junit.platform:junit-platform-suite-engine")
+    testImplementation("com.approvaltests:approvaltests")
 }
 
 tasks.withType<KotlinCompile> {
