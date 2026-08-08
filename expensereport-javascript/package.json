@@ -1,0 +1,20 @@
+{
+  "name": "expensereport-javascript",
+  "version": "1.0.0",
+  "description": "Kata for Coding Dojos.",
+  "main": "Expenses.js",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "prettier": "prettier --write *.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "jest": "^27.3.1",
+    "prettier": "^2.4.1"
+  }
+}
