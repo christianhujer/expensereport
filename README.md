@@ -70,6 +70,7 @@ The ExpenseReport example currently exists in the following languages:
 - [Swift](expensereport-swift/)
 - [TcL](expensereport-tcl/)
 - [TypeScript](expensereport-typescript/)
+- [V](expensereport-v/)
 - [Visual BASIC](expensereport-vb/)
 - [XML/XSLT](expensereport-xslt/)
 - [Zig](expensereport-zig/)
