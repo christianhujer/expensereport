@@ -14,7 +14,7 @@ The ExpenseReport refactoring example in TypeScript.
 ```shell
 ./configure.sh  # will use nvm to install and activate the appropriate version of node
 npm test # will run all the tests
-npm bulid # will create a build of the project
+npm build # will create a build of the project
 node build/output.js # will run the compiled output
 npm run format:check # runs the linter and formatter rules
 npm run format:fix # applies a fix to the fixable issues 
